@@ -14,10 +14,10 @@ OmnyPay android SDK enables retailer/merchant android apps to integrate OmnyPay'
 
 
 ## Requirements 
-- Minimun android version supported is 16 (Android 4.1 Jelly Bean)
+- Minimum android version supported is 16 (Android 4.1 Jelly Bean)
 - Android studio 2.2 or higher
 - Gradle build tools version 2.1.3 or higher
-- Latest version of Anroid support repository installed
+- Latest version of Android support repository installed
 - Gradle dependencies
     - compile 'com.android.support:appcompat-v7:23.0.0'
     - compile 'com.android.support:design:23.0.0'
@@ -31,7 +31,7 @@ OmnyPay android SDK enables retailer/merchant android apps to integrate OmnyPay'
 
 # Installation
 ## Gradle dependency
-Currently Omnypay does not support Gradle but committed to provide it shortly. Please visit the site again on availability of Gradle dependency. For those developers who have signed up for developer account already, an email notification about availability will be sent. 
+Currently OmnyPay does not support Gradle but committed to provide it shortly. Please visit the site again on availability of Gradle dependency. For those developers who have signed up for developer account already, an email notification about availability will be sent. 
 
 ## Manually
 Until we support Gradle installation, you can integrate OmnyPay into your project manually.
@@ -52,12 +52,12 @@ There are two main classes of SDK:
 All the APIs provided by the SDK perform specific operations provided they are called in a logical sequence. However there are two minimum required steps to follow before any other operation can be performed, these are:
 
 ### Initialize SDK
-Initialize the OmnyPay SDK using ```initialize(merchantId, null, OmnypayCallback())``` api by passing your merchant Id. The merchantId uniquely identifies your organization. Any API calls to access or update resources are scoped within the merchant id. This should be called prior to calling OmnyPay APIs and recommend this be invoked at application startup. The application can detect success through the completion callback.
+Initialize the OmnyPay SDK using ```initialize(merchantId, null, OmnypayCallback())``` API by passing your merchant Id. The merchantId uniquely identifies your organization. Any API calls to access or update resources are scoped within the merchant id. This should be called prior to calling OmnyPay APIs and recommend this be invoked at application startup. The application can detect success through the completion callback.
 
 ### Authenticate shopper
-OmnyPay supports authentication through a retailer authentication service. If a retailer authentication service is used, the Retailer should work with OmnyPay technical representative to establish connection before invoking the authentication API. OmnyPay supports [Basic authentication] and oAuth token in its API and SDK
+OmnyPay supports authentication through a retailer authentication service. If a retailer authentication service is used, the Retailer should work with OmnyPay technical representative to establish the connection before invoking the authentication API. OmnyPay supports [Basic authentication] and OAuth token in its API and SDK
 
-To verify using oAuth, the application should pass auth token and user id in ```authenticateShopper(authToken, merchantShopperId, OmnyPayCallback)``` api. If the oAuth token is refreshed, the application should call this API to re-authenticate the user in order to allow the shopper to continue seamlessly. These steps are necessary to make minimum validations in order to continue with any further operation.
+To verify using OAuth, the application should pass auth token and user id in ```authenticateShopper(authToken, merchantShopperId, OmnyPayCallback)``` API. If the OAuth token is refreshed, the application should call this API to re-authenticate the user in order to allow the shopper to continue seamlessly. These steps are necessary to make minimum validations in order to continue with any further operation.
 
 # Anatomy of a typical transaction flow
 
@@ -83,7 +83,7 @@ An example flow can be created as below:
     });
 ```
 
-### Authenticate with identity service.
+### Authenticate with identity service
 Authenticate the user with your Identity service (which in turn can be catered by OmnyPay). Once authenticated, pass on the authorization token to OmnyPay service (next step).
 
 ### Authenticate user (shopper) on OmnyPay platform by passing your user/shopper id and auth token
@@ -130,8 +130,8 @@ Depending on the vault configuration requested during merchant onboarding, OmnyP
     });
 ```
 
-### Create a basket.
-Every OmnyPay transaction should have a basket object. The basket object is used to store information about the transaction such as association with the retailer’s point of sale, lineitems or products purchased, associated offers, loyalty points, etc.
+### Create a basket
+Every OmnyPay transaction should have a basket object. The basket object is used to store information about the transaction such as association with the retailer’s point of sale, line items or products purchased, associated offers, loyalty points, etc.
 
 ```java
     OmnyPayAPI.createBasket(new OmnyPayCallback<Basket>() {
@@ -149,7 +149,7 @@ Every OmnyPay transaction should have a basket object. The basket object is used
 ```
 
 ### Checkin basket at point of Sale terminal
-Register a Checkin of the shopper at the Point of Sale through a scan of a QR code or a beacon. Either way the application should pass the Point of Sale(POS) Id mapped to the QR code.
+Register a Checkin of the shopper at the Point of Sale through a scan of a QR code or a beacon. Either way, the application should pass the Point of Sale(POS) Id mapped to the QR code.
 
 Prerequisites: 
 - AutenticatedShopper
@@ -173,11 +173,11 @@ Prerequisites:
 
 ### POS adds items in the basket
 
-Application must listen to following **local broadcast** actions to get any change in basket state:
+The application must listen to following **local broadcast** actions to get any change in basket state:
 
 - ```OmnyPayAPI.ACTION_UPDATE_BASKET: Notifies basket has been updated (contains updated Basket).```
 - ```OmnyPayAPI.ACTION_BASKET_RECEIPT_UPDATE: Basket receipt received, app can show the receipt in UI (Contains BasketReceipt).```
-- ```OmnyPayAPI.ACTION_TRANSACTION_CANCELLED: Transaction has been cancelled by point of sale terminal. Update app accordingly.```
+- ```OmnyPayAPI.ACTION_TRANSACTION_CANCELLED: Transaction has been canceled by point of sale terminal. Update app accordingly.```
 - ```OmnyPayAPI.ACTION_POST_PURCHASE_OFFER: Notifies app about any post purchase offers (Offer URL)```
 
 Any relevant data in these broadcasts is passed as serializable extra with key ```OmnyPayAPI.BROADCAST_DATA```.
@@ -238,11 +238,11 @@ Pay the retail transaction using the payment instrument selected by the shopper.
 Prerequisite:
 - AutenticatedShopper 
 - Basket Created 
-- Sucessful CheckIn
+- Successful CheckIn
 - Basket with a non-zero subtotal value.
 - Optional – Loyalty points redemption selected.
 - Optional – Coupons or Offers selected
-- Optional – PreviewPayment done to estimate taxes, card linked offers 
+- Optional – PreviewPayment done to estimate taxes, card-linked offers 
 
 ```java
     OmnyPayAPI.startPayment(paymentInstrumentationID, OmnyPayCallback
@@ -261,12 +261,12 @@ Prerequisite:
 ```
 
 ### Get payment receipt
-Fetches the payment receipt for the current transcation
+Fetches the payment receipt for the current transaction
 
 Prerequisite:
 - AutenticatedShopper
 - Basket Created
-- Sucessful CheckIn
+- Successful CheckIn
 - Basket with a non-zero subtotal value.
 
 ```java
