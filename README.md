@@ -154,6 +154,20 @@ Every OmnyPay transaction should have a basket object. The basket object is used
     });
 ```
 
+###Scan the Point of Sale QRCode
+
+Scan the QRCode for the Point of Sale using **OmnyPayScan SDK**.
+
+```java
+    Scan.getInstance().startScan(appContext, new ScannedResultCallback() {
+        @Override
+        public void onScanResult(String s) {
+            // scan result of bar code or QR code
+            processResult(s);
+        }
+    });
+```
+
 ### Checkin basket at point of Sale terminal
 Register a Checkin of the shopper at the Point of Sale through a scan of a QR code or a beacon. Either way, the application should pass the Point of Sale(POS) Id mapped to the QR code.
 
