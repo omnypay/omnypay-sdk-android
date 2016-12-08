@@ -10,7 +10,7 @@ The OmnyPay SaaS platform offers a cutting edge orchestration layer which allows
 Consumers identify with the brands that they interact with the most, and have built inherent loyalty with them. The OmnyPay white label solution leverages and strengthens the ongoing brand equity built by the merchant or bank or service provider throughout the ongoing relationship with their loyal shoppers, and by consistently promoting it across all channels.  Through its mobile SDK and Open APIs, the OmnyPay platform can be quickly integrated with the existing mobile apps, as well as, with their legacy POS and backend systems.
 
 ## Registration
-- Register your app at http://www.omnypay.net/ and save merchantId
+Register your app at http://www.omnypay.net/ and save merchantId
 
 ## Android SDK
 OmnyPay android SDK enables retailer/merchant android apps to integrate OmnyPay's rich checkout experience for a shopper. OmnyPay SDK provides simple functions to perform operations on OmnyPay platform.
