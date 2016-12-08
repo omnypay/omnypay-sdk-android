@@ -1,7 +1,16 @@
 # [![OmnyPay](http://static1.squarespace.com/static/54ae3170e4b0afa8bbd35870/t/580cb7a09f7456d38de76cd7/1477511927583)](http://www.omnypay.net/)
 
 ## Introduction
-OmnyPay allows retailers to know their customers while they are browsing, shopping and during checkout. By having an improved understanding of shoppers' behavior and profile, retailers are able to better serve them at a personalized level and deliver services and savings that would further enhance customer loyalty. OmnyPay creates a dynamic digital channel between the retailer and the shopper at the time of checkout, allowing shoppers easy, integrated redemption of loyalty, rewards and coupons through a simplified dashboard for maximum savings, steering them towards optimized payment options. OmnyPay helps retailers deliver a consistent experience across all channels - in store, online, in-app, virtual aisle and dynamic media, using any smart mobile device. 
+
+In order to serve the emerging needs of merchants, OmnyPay has developed a SaaS based white label Contextual Commerce platform with which merchants, banks and service providers will be able to offer their consumers, several unique digital commerce services, as part of their own branded mobile app – thus giving the merchants, full control of their consumer relationships, consumer data and consumer experiences when shopping across their multi-channels environments. Equally, working with partner’s bank’s app, merchants can have a “virtual” relationship with non-frequent customers as well.
+The OmnyPay SaaS platform offers a cutting edge orchestration layer which allows the rapid integration of its platform to the merchants’ POS, CRM, Loyalty, marketing, inventory, analytics, and payments, while also enabling a unique core set of premium digital services as part of the Merchants’ own branded app for their repeat customers, and their partners app for less frequently visiting customers.
+
+![OmnyPaySaaS](DocAssets/images/OmnyPaySaaS.png)
+
+Consumers identify with the brands that they interact with the most, and have built inherent loyalty with them. The OmnyPay white label solution leverages and strengthens the ongoing brand equity built by the merchant or bank or service provider throughout the ongoing relationship with their loyal shoppers, and by consistently promoting it across all channels.  Through its mobile SDK and Open APIs, the OmnyPay platform can be quickly integrated with the existing mobile apps, as well as, with their legacy POS and backend systems.
+
+## Registration
+- Register your app at http://www.omnypay.net/ and save merchantId
 
 ## Android SDK
 OmnyPay android SDK enables retailer/merchant android apps to integrate OmnyPay's rich checkout experience for a shopper. OmnyPay SDK provides simple functions to perform operations on OmnyPay platform.
@@ -38,9 +47,6 @@ Until we support Gradle installation, you can integrate OmnyPay into your projec
 
 - Download the OmnyPay SDK for android. For details see <a href="https://github.com/omnypay/omnypay-sdk-android">here</a>.
 - Select your application project in the project explorer and click on new module. Select import .AAR/.JAR package. Select the downloaded AAR android library.
-
-## Registration
-- Register your app at http://www.omnypay.net/ and save merchantId
 
 ## Integrating with core services
 There are two main classes of SDK:
