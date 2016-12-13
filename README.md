@@ -28,15 +28,17 @@ OmnyPay android SDK enables retailer/merchant android apps to integrate OmnyPay'
 - Gradle build tools version 2.1.3 or higher
 - Latest version of Android support repository installed
 - Gradle dependencies
-    - compile 'com.android.support:appcompat-v7:23.0.0'
-    - compile 'com.android.support:design:23.0.0'
-    - compile 'com.journeyapps:zxing-android-embedded:3.3.0'
-    - compile 'com.google.android.gms:play-services-vision:8.1.0'
-    - compile 'com.squareup.okhttp:logging-interceptor:2.7.5'
-    - compile 'com.google.code.gson:gson:2.6.2'
-    - compile 'joda-time:joda-time:2.9.3'
-    - compile "org.java-websocket:Java-WebSocket:1.3.0"
-    - compile 'com.google.android.gms:play-services-gcm:8.1.0'
+    - compile 'com.android.support:appcompat-v7:23.0.0' (general)
+    - compile 'com.android.support:design:23.0.0' (general)
+    - compile 'com.squareup.picasso:picasso:2.5.2' (required for OmnyPayAPI)
+    - compile 'com.squareup.okhttp:okhttp:2.7.5' (required for OmnyPayAPI & OmnyPayIdentity)
+    - compile 'com.journeyapps:zxing-android-embedded:3.3.0' (required for OmnyPayScan module)
+    - compile 'com.google.android.gms:play-services-vision:8.1.0' (required for OmnyPayScan module)
+    - compile 'com.squareup.okhttp:logging-interceptor:2.7.5' (required for OmnyPayAPI & OmnyPayIdentity)
+    - compile 'com.google.code.gson:gson:2.6.2' (required for OmnyPayAPI)
+    - compile 'joda-time:joda-time:2.9.3' (required for OmnyPayAPI)
+    - compile "org.java-websocket:Java-WebSocket:1.3.0" (required for OmnyPayAPI)
+    - compile 'com.google.android.gms:play-services-gcm:8.1.0' (required for OmnyPayAPI)
 
 # Installation
 ## Gradle dependency
@@ -159,7 +161,7 @@ Every OmnyPay transaction should have a basket object. The basket object is used
 Scan the QRCode for the Point of Sale using **OmnyPayScan SDK**.
 
 ```java
-    Scan.getInstance().startScan(appContext, new ScannedResultCallback() {
+    OmnyPayScan.getInstance().startScan(appContext, new ScannedResultCallback() {
         @Override
         public void onScanResult(String s) {
             // scan result of bar code or QR code
@@ -304,3 +306,40 @@ Prerequisite:
     });
 ```
 
+# Using supporting OmnyPay libraries
+
+### OmnyPayIdentity
+This library helps in retrieving Credit / Debit card and Driving licence information from device camera scan. To use this library: 
+
+Add OmnyPayIdentity library in build path and scan a credit/debit card to get card information
+
+```java
+        IdentityScanner.getInstance().scanPaymentInstrument(
+                myActivityContext, new CardScanCallback() {
+            @Override
+            public void onCardScanResult(CardInformation cardInformation) {
+                
+                // card information received from scan, use this
+                // to populate the UI for Add card.
+            }
+        });
+```
+
+### OmnyPayAuth
+
+This library is for user's touch authentication. Works with Samsung spass and android finger print APIs. This library can be used for authorizing user before displaying existing payment instruments or making a payment.
+
+Add OmnyPayAuth library in build path and authenticate wherever needed requried in the app.
+```java
+        TouchAuthenticationManager.getInstance().initiateAuthentication(MainActivity.this,
+                password, dialogTitleForFailure, new Authentication() {
+                    @Override
+                    public void authenticationComplete(boolean isAuthenticatedSuccessfully) {
+                        if(isAuthenticatedSuccessfully){
+                            // show success dialog
+                        } else {
+                            // Authentication failed, use some other authentication method
+                        }
+                    }
+                });
+```
