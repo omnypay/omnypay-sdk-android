@@ -156,12 +156,12 @@ Every OmnyPay transaction should have a basket object. The basket object is used
     });
 ```
 
-###Scan the Point of Sale QRCode
+### Scan the Point of Sale QRCode
 
 Scan the QRCode for the Point of Sale using **OmnyPayScan SDK**.
 
 ```java
-    OmnyPayScan.getInstance().startScan(appContext, new ScannedResultCallback() {
+    OmnyPayScan.getInstance().start(appContext, new ScannedResultCallback() {
         @Override
         public void onScanResult(String s) {
             // scan result of bar code or QR code
