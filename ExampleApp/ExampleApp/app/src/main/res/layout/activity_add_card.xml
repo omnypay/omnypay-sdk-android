@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        ></include>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="12dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/card_number_edit"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="Card Number"
+                android:inputType="text"
+                android:paddingLeft="8dp"
+                android:textColor="#000000"/>
+
+            <EditText
+                android:id="@+id/card_alias_edit"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="Card Alias"
+                android:inputType="text"
+                android:paddingLeft="8dp"
+                android:textColor="#000000"/>
+
+            <Spinner
+                android:id="@+id/card_type_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:dropDownWidth="match_parent"
+
+                android:transitionGroup="false"/>
+
+            <EditText
+                android:id="@+id/card_issuer"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="Card Issuer"
+                android:inputType="text"
+                android:paddingLeft="8dp"
+                android:textColor="#000000"/>
+
+            <EditText
+                android:id="@+id/card_expiry_date"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edit_text"
+                android:ems="10"
+                android:hint="Card Expiry Date (MM/YY)"
+                android:inputType="text"
+                android:paddingLeft="8dp"
+                android:textColor="#000000"/>
+
+            <EditText
+                android:id="@+id/card_holder_zip"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edit_text"
+                android:ems="10"
+                android:hint="Card Holder Zip"
+                android:inputType="text"
+                android:paddingLeft="8dp"
+                android:textColor="#000000"/>
+
+            <EditText
+                android:id="@+id/card_holder_name"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_edit_text"
+                android:ems="10"
+                android:hint="Card Holder Name"
+                android:inputType="text"
+                android:paddingLeft="8dp"
+                android:textColor="#000000"/>
+
+            <Button
+                android:id="@+id/add_card"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:text="@string/Ok"
+                android:textColor="#000000"
+
+
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
