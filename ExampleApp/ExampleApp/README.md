@@ -6,6 +6,7 @@ Follow below steps to import exampleapp in your workspace:
 - Manually add OmnyPayAPI, OmnyPayAuth, OmnyPayIdentity, OmnyPayScan aars placed at https://github.com/omnypay/omnypay-sdk-android
 - Sync workspace.
 - InitializeActivity is marked as the launcher class.
-- Replace merchantId with YOUR MERCHANT ID.
-- Replace username with YOUR USERNAME.
-- Replace password with YOUR PASSWORD.
+- Replace constants in InitializeActivity
+	- InitializeActivity.merchantId with YOUR MERCHANT ID.
+	- InitializeActivity.username with YOUR USERNAME.
+	- InitializeActivity.password with YOUR PASSWORD.
