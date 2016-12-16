@@ -39,6 +39,27 @@ OmnyPay android SDK enables retailer/merchant android apps to integrate OmnyPay'
     - compile 'joda-time:joda-time:2.9.3' (required for OmnyPayAPI)
     - compile "org.java-websocket:Java-WebSocket:1.3.0" (required for OmnyPayAPI)
     - compile 'com.google.android.gms:play-services-gcm:8.1.0' (required for OmnyPayAPI)
+    - Add Jumio dependency in app level build.gradle
+```groovy
+            repositories {
+                maven {
+                    url 'http://mobile-sdk.jumio.com'
+                }
+            }
+
+            ext {
+                SDK_VERSION = "2.3.0"
+            }
+
+            dependencies {
+                ...
+                compile "com.jumio.android:bam:${SDK_VERSION}@aar"
+                compile "com.jumio.android:core:${SDK_VERSION}@aar"
+                compile "com.jumio.android:nv:${SDK_VERSION}@aar"
+                compile "com.jumio.android:nv-ocr:${SDK_VERSION}@aar"
+                ...
+            }
+```
 
 # Installation
 ## Gradle dependency
@@ -343,3 +364,23 @@ Add OmnyPayAuth library in build path and authenticate wherever needed requried 
                     }
                 });
 ```
+
+### Sample app
+Checkout our sample app <a href="https://github.com/omnypay/omnypay-sdk-android/tree/master/ExampleApp/ExampleApp">here</a>.
+
+## License
+   ```
+   Copyright 2016 OmnyPay Inc.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+   ```
