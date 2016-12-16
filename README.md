@@ -39,6 +39,27 @@ OmnyPay android SDK enables retailer/merchant android apps to integrate OmnyPay'
     - compile 'joda-time:joda-time:2.9.3' (required for OmnyPayAPI)
     - compile "org.java-websocket:Java-WebSocket:1.3.0" (required for OmnyPayAPI)
     - compile 'com.google.android.gms:play-services-gcm:8.1.0' (required for OmnyPayAPI)
+    - Add Jumio dependency in app level build.gradle
+```groovy
+            repositories {
+                maven {
+                    url 'http://mobile-sdk.jumio.com'
+                }
+            }
+
+            ext {
+                SDK_VERSION = "2.3.0"
+            }
+
+            dependencies {
+                ...
+                compile "com.jumio.android:bam:${SDK_VERSION}@aar"
+                compile "com.jumio.android:core:${SDK_VERSION}@aar"
+                compile "com.jumio.android:nv:${SDK_VERSION}@aar"
+                compile "com.jumio.android:nv-ocr:${SDK_VERSION}@aar"
+                ...
+            }
+```
 
 # Installation
 ## Gradle dependency
@@ -343,6 +364,9 @@ Add OmnyPayAuth library in build path and authenticate wherever needed requried 
                     }
                 });
 ```
+
+### Sample app
+Checkout our sample app <a href="https://github.com/omnypay/omnypay-sdk-android/tree/master/ExampleApp/ExampleApp">here</a>.
 
 ## License
    ```
