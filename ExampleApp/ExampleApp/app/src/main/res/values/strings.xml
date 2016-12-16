@@ -9,7 +9,7 @@
     <string name="card_number">Card Number</string>
     <string name="card_type">Card Type</string>
     <string name="no_card">No Existing Card</string>
-    <string name="Ok">OK</string>
+    <string name="add_card">ADD CARD</string>
     <string-array name="card_type_array">
         <item>debit</item>
         <item>credit</item>

@@ -68,6 +68,7 @@ public class ReceiptActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         Intent intent = new Intent(ReceiptActivity.this, InitializeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 

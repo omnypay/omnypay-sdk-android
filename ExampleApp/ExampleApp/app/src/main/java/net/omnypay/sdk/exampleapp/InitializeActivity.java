@@ -33,10 +33,18 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
     private ProgressDialog progressDialog;
 
     /**
-     * Set merchantId, username and password before proceeding any further
+     * REPLACE MERCHANTID WITH YOUR MERCHANT ID
      */
     private String merchantId = null ;
+
+    /**
+     * YOUR USERNAME
+     */
     private String username = null ;
+
+    /**
+     * YOUR PASSWORD
+     */
     private String password = null;
     private String accountAuthenticationUrl = "http://pantheon.demo0.omnypay" +
             ".net:8080/identity/authentication";
@@ -46,7 +54,6 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initialize);
         initializeVariables();
-
     }
 
     private void initializeVariables() {
@@ -109,6 +116,7 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
                     public void run() {
                         progressDialog.cancel();
                         proceedButton.setVisibility(View.VISIBLE);
+                        initializeButton.setEnabled(false);
                     }
                 });
             }

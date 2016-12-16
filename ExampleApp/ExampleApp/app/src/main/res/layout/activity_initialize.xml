@@ -26,7 +26,7 @@
 
     <Button
         android:id="@+id/initializeButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/appDescription"
         android:layout_gravity="center_horizontal"
@@ -35,12 +35,12 @@
 
     <Button
         android:id="@+id/proceedButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/initializeButton"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:text="@string/proceed_button"
         android:visibility="gone"/>
 

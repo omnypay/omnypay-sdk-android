@@ -75,7 +75,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
                 if (basket.getItems().size() == 0) {
                     basketRecyclerView.setVisibility(View.GONE);
                     emptyView.setVisibility(View.VISIBLE);
-                    payButton.setVisibility(INVISIBLE);
+                    payButton.setEnabled(false);
                 } else {
                     basketRecyclerView.setVisibility(View.VISIBLE);
                     emptyView.setVisibility(View.GONE);
@@ -129,7 +129,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
                 case OmnyPayAPI.ACTION_UPDATE_BASKET:
                     final Basket updatedBasket = (Basket) intent.getSerializableExtra(OmnyPayAPI.BROADCAST_DATA);
                     if (updatedBasket.getState().equals(Basket.StateEnum.COMPLETE_SCAN)) {
-                        payButton.setVisibility(View.VISIBLE);
+                        payButton.setEnabled(true);
                     } else {
                         displayUpdatedBasket(updatedBasket);
                     }
