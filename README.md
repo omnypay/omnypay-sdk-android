@@ -366,7 +366,7 @@ Add OmnyPayAuth library in build path and authenticate wherever needed requried 
 ```
 
 ### Sample app
-Checkout our sample app <a href="https://github.com/omnypay/omnypay-sdk-android/tree/master/ExampleApp/ExampleApp">here</a>.
+Checkout our sample app <a href="https://github.com/omnypay/omnypay-sdk-ios/tree/master/OmnyPayDemoApp">here</a>.
 
 ## License
    ```
