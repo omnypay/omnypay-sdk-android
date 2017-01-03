@@ -37,8 +37,29 @@ OmnyPay android SDK enables retailer/merchant android apps to integrate OmnyPay'
     - compile 'com.squareup.okhttp:logging-interceptor:2.7.5' (required for OmnyPayAPI & OmnyPayIdentity)
     - compile 'com.google.code.gson:gson:2.6.2' (required for OmnyPayAPI)
     - compile 'joda-time:joda-time:2.9.3' (required for OmnyPayAPI)
-    - compile "org.java-websocket:Java-WebSocket:1.3.0" (required for OmnyPayAPI)
+    - compile 'org.java-websocket:Java-WebSocket:1.3.0' (required for OmnyPayAPI)
     - compile 'com.google.android.gms:play-services-gcm:8.1.0' (required for OmnyPayAPI)
+    - Add Jumio dependency in app level build.gradle
+```groovy
+            repositories {
+                maven {
+                    url 'http://mobile-sdk.jumio.com'
+                }
+            }
+
+            ext {
+                SDK_VERSION = "2.3.0"
+            }
+
+            dependencies {
+                ...
+                compile 'com.jumio.android:bam:${SDK_VERSION}@aar'
+                compile 'com.jumio.android:core:${SDK_VERSION}@aar'
+                compile 'com.jumio.android:nv:${SDK_VERSION}@aar'
+                compile 'com.jumio.android:nv-ocr:${SDK_VERSION}@aar'
+                ...
+            }
+```
 
 # Installation
 ## Gradle dependency
@@ -85,7 +106,7 @@ An example flow can be created as below:
         }
 
         @Override
-        public void onFailure(OmnypayError omnypayError) {
+        public void onFailure(OmnyPayError omnyPayError) {
             // Initialization failed check status code and verify merchantId
         }
     });
@@ -105,7 +126,7 @@ Authenticate the user with your Identity service (which in turn can be catered b
               }
 
               @Override
-              public void onFailure(OmnypayError e) {
+              public void onFailure(OmnyPayError e) {
                   // Authentiaction failed check token and shopper account.
               }
     });
@@ -150,7 +171,7 @@ Every OmnyPay transaction should have a basket object. The basket object is used
         }
 
         @Override
-        public void onFailure(OmnypayError omnypayError) {
+        public void onFailure(OmnyPayError omnyPayError) {
             //Basket creation failed check the error response
         }
     });
@@ -174,7 +195,7 @@ Scan the QRCode for the Point of Sale using **OmnyPayScan SDK**.
 Register a Checkin of the shopper at the Point of Sale through a scan of a QR code or a beacon. Either way, the application should pass the Point of Sale(POS) Id mapped to the QR code.
 
 Prerequisites: 
-- AutenticatedShopper
+- AuthenticatedShopper
 
 ```java
     OmnyPayAPI.checkIn(posID, new OmnyPayCallback<MerchantPos>() {
@@ -185,7 +206,7 @@ Prerequisites:
         }
 
         @Override
-        public void onFailure(OmnypayError error) {
+        public void onFailure(OmnyPayError error) {
             // Basket association failed, the POS might be busy or
             // mismatch in merchant ID and POS terminals
             // Check status code from error object
@@ -230,7 +251,7 @@ Preview the projected itemized payment for the payment instrument selected. The 
     
 
 Prerequisite:
-- AutenticatedShopper
+- AuthenticatedShopper
 - Basket Created 
 - Successful Check-in
 - Basket with a non-zero subtotal value
@@ -247,7 +268,7 @@ Prerequisite:
         }
 
         @Override
-        public void onFailure(OmnypayError error) {
+        public void onFailure(OmnyPayError error) {
             // Check status code and message error object
         }
     });
@@ -258,7 +279,7 @@ Prerequisite:
 Pay the retail transaction using the payment instrument selected by the shopper.
 
 Prerequisite:
-- AutenticatedShopper 
+- AuthenticatedShopper 
 - Basket Created 
 - Successful CheckIn
 - Basket with a non-zero subtotal value.
@@ -270,7 +291,7 @@ Prerequisite:
     OmnyPayAPI.startPayment(paymentInstrumentationID, OmnyPayCallback
                                         <BasketPaymentConfirmation>() {
         @Override
-        public void onFailure(OmnypayError omnypayError) {
+        public void onFailure(OmnyPayError omnyPayError) {
             // Payment failed
         }
 
@@ -286,7 +307,7 @@ Prerequisite:
 Fetches the payment receipt for the current transaction
 
 Prerequisite:
-- AutenticatedShopper
+- AuthenticatedShopper
 - Basket Created
 - Successful CheckIn
 - Basket with a non-zero subtotal value.
@@ -294,7 +315,7 @@ Prerequisite:
 ```java
     OmnyPayAPI.getPaymentReceipt(new OmnyPayCallback<BasketReceipt>() {
         @Override
-        public void onFailure(OmnypayError omnypayError) {
+        public void onFailure(OmnyPayError omnyPayError) {
             // Failed to fetch receipts
         }
 
@@ -343,3 +364,23 @@ Add OmnyPayAuth library in build path and authenticate wherever needed requried 
                     }
                 });
 ```
+
+### Sample app
+Checkout our sample app <a href="https://github.com/omnypay/omnypay-sdk-android/tree/master/ExampleApp/ExampleApp">here</a>.
+
+## License
+   ```
+   Copyright 2016 OmnyPay Inc.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+   ```
