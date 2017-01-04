@@ -4,7 +4,7 @@
     <string name="app_description">This is an example app which will guide the user with integration of OmnyPay SDK</string>
     <string name="initialize_button">Initialize SDK</string>
     <string name="sdk_description">This is an example app which will guide the user with
-        integration of different OmnyPay SDK's</string>
+        integration of different OmnyPay SDKs</string>
     <string name="initialize_omnypaypi_button">Initialize OmnyPay PI SDK</string>
     <string name="initialize_omnypaydl_button">Initialize OmnyPay DL SDK</string>
     <string name="initialize_omnypayauth_button">Initialize OmnyPAy Auth SDK</string>
