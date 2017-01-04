@@ -329,19 +329,35 @@ Prerequisite:
 
 # Using supporting OmnyPay libraries
 
-### OmnyPayIdentity
-This library helps in retrieving Credit / Debit card and Driving licence information from device camera scan. To use this library: 
+### OmnyPayDLScan
+This library helps in retrieving Driving licence information from device camera scan. To use this library: 
 
-Add OmnyPayIdentity library in build path and scan a credit/debit card to get card information
+Add OmnyPayDLScan library in build path and scan a valid driving licence to get information
 
 ```java
-        IdentityScanner.getInstance().scanPaymentInstrument(
-                myActivityContext, new CardScanCallback() {
+        OmnyPayDLScanner.getInstance().start(
+                myActivityContext, new DriversLicenseScanCallback() {
             @Override
-            public void onCardScanResult(CardInformation cardInformation) {
-                
-                // card information received from scan, use this
-                // to populate the UI for Add card.
+            public void onDriversLicenseScan(IdentityData identityData) {
+              
+                // Driving licence information received from scan, use this
+                // to populate the UI or verification.
+            }
+        });
+```
+
+### OmnyPayPIScan
+This library helps in retrieving credit / debit card or payment instrument information from device camera scan. To use this library: 
+
+Add OmnyPayPIScan library in build path and scan a valid credit / debit card to get information
+
+```java
+        OmnyPayPIScanner.getInstance().start(
+                myActivityContext, new PaymentInstrumentScanCallback() {
+            @Override
+            public void onPaymentInstrumentScan(CardInformation cardInformation) {
+              
+                // payment instrumentation information received.
             }
         });
 ```
