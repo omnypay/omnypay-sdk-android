@@ -9,6 +9,7 @@
     <string name="initialize_omnypaydl_button">Initialize OmnyPay DL SDK</string>
     <string name="initialize_omnypayauth_button">Initialize OmnyPAy Auth SDK</string>
     <string name="scan_button">SCAN</string>
+    <string name="authenticate_button">AUTHENTICATE</string>
     <string name="proceed_button">PROCEED</string>
     <string name="add_button">ADD CARD</string>
     <string name="existing_cards">Existing Cards</string>
