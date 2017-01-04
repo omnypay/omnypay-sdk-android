@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/linearLayout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        ></include>
+
+    <TextView
+        android:id="@+id/appDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="20dp"
+        android:text="@string/sdk_description"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16sp"/>
+
+    <Button
+        android:id="@+id/initializeOmnypayPIButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appDescription"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:text="@string/initialize_omnypaypi_button"/>
+
+    <Button
+        android:id="@+id/initializeOmnypayDLButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/initializeOmnypayPIButton"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:text="@string/initialize_omnypaydl_button"/>
+
+    <Button
+        android:id="@+id/initializeOmnypayAUTHButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/initializeOmnypayDLButton"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/initialize_omnypayauth_button"/>
+
+</LinearLayout>
+
+

@@ -3,6 +3,12 @@
     <string name="action_settings">Settings</string>
     <string name="app_description">This is an example app which will guide the user with integration of OmnyPay SDK</string>
     <string name="initialize_button">Initialize SDK</string>
+    <string name="sdk_description">This is an example app which will guide the user with
+        integration of different OmnyPay SDK's</string>
+    <string name="initialize_omnypaypi_button">Initialize OmnyPay PI SDK</string>
+    <string name="initialize_omnypaydl_button">Initialize OmnyPay DL SDK</string>
+    <string name="initialize_omnypayauth_button">Initialize OmnyPAy Auth SDK</string>
+    <string name="scan_button">SCAN</string>
     <string name="proceed_button">PROCEED</string>
     <string name="add_button">ADD CARD</string>
     <string name="existing_cards">Existing Cards</string>

@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':omnypayauth-release', ':omnypaydlscan-release', ':omnypaypiscan-release', ':omnypayscan-release', ':omnypaysdk-dev-release'
