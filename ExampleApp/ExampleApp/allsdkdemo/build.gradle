@@ -47,6 +47,7 @@ dependencies {
     compile 'com.squareup.okhttp:logging-interceptor:2.7.5'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.google.android.gms:play-services-gcm:10.0.1'
+    compile 'joda-time:joda-time:2.9.3'
     testCompile 'junit:junit:4.12'
     compile project(':OmnyPayAuth')
     compile project(':OmnyPayDLScan')

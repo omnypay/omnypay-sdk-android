@@ -42,7 +42,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="60dp"
         android:text="@string/proceed_button"
-        android:visibility="gone"/>
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/other_sdk_demos"

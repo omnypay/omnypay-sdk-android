@@ -29,7 +29,7 @@ import net.omnypay.sdk.core.model.BasketReceipt;
 import net.omnypay.sdk.core.model.Item;
 import net.omnypay.sdk.core.model.ReconciledTotal;
 import net.omnypay.sdk.core.model.TotalSummary;
-import net.omnypay.sdk.exampleapp.adapters.BasketCartAdapter;
+import net.omnypay.sdk.exampleapp.adapters.BasketAdapter;
 import net.omnypay.sdk.exampleapp.utils.Constants;
 
 import java.util.List;
@@ -40,7 +40,7 @@ import java.util.List;
 public class ReceiptActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView subtotal, taxes, discount, totalPaid;
     private RecyclerView receiptItemsRecyclerView;
-    private BasketCartAdapter receiptCartAdapter;
+    private BasketAdapter receiptCartAdapter;
     private BasketReceipt basketReceipt;
     private Button homeButton;
 
@@ -66,7 +66,7 @@ public class ReceiptActivity extends AppCompatActivity implements View.OnClickLi
 
         setTotalPriceForItems(basketReceipt.getItems(), basketReceipt.getReconciledTotal());
 
-        receiptCartAdapter = new BasketCartAdapter(basketReceipt.getItems(), basketReceipt.getOffers());
+        receiptCartAdapter = new BasketAdapter(basketReceipt.getItems(), basketReceipt.getOffers());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ReceiptActivity.this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         receiptItemsRecyclerView.setLayoutManager(linearLayoutManager);

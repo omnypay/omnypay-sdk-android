@@ -1,5 +1,5 @@
 
-package net.omnypay.sdk.allsdkdemo.adapters;
+package net.omnypay.sdk.exampleapp.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import net.omnypay.sdk.core.model.Basket;
 import net.omnypay.sdk.core.model.Item;
 import net.omnypay.sdk.core.model.ProductOffer;
+import net.omnypay.sdk.exampleapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,14 +19,14 @@ import java.util.List;
  * SKU Product views.
  */
 
-public class BasketCartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final int PRODUCT_OFFER = 1;
     private final int BASKET_ITEM = 2;
     private ArrayList<Object> basketItems = new ArrayList<Object>();
 
 
-    public BasketCartAdapter(List<Item> items, List<ProductOffer> productOffers) {
+    public BasketAdapter(List<Item> items, List<ProductOffer> productOffers) {
         if (items != null) {
             buildBasketRecyclerViewItems(items, productOffers);
         }

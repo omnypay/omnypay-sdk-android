@@ -1,20 +1,5 @@
-/**
- * Copyright 2016 OmnyPay Inc.
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
-package net.omnypay.sdk.exampleapp.adapters;
+package net.omnypay.sdk.allsdkdemo.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import net.omnypay.sdk.core.model.Basket;
+import net.omnypay.sdk.allsdkdemo.R;
 import net.omnypay.sdk.core.model.Item;
 import net.omnypay.sdk.core.model.ProductOffer;
-import net.omnypay.sdk.exampleapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,14 +19,14 @@ import java.util.List;
  * SKU Product views.
  */
 
-public class BasketCartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final int PRODUCT_OFFER = 1;
     private final int BASKET_ITEM = 2;
     private ArrayList<Object> basketItems = new ArrayList<Object>();
 
 
-    public BasketCartAdapter(List<Item> items, List<ProductOffer> productOffers) {
+    public BasketAdapter(List<Item> items, List<ProductOffer> productOffers) {
         if (items != null) {
             buildBasketRecyclerViewItems(items, productOffers);
         }

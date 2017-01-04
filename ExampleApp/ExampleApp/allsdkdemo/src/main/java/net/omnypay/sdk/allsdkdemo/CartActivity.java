@@ -36,7 +36,7 @@ import net.omnypay.sdk.core.model.BasketPaymentConfirmation;
 import net.omnypay.sdk.core.model.BasketReceipt;
 import net.omnypay.sdk.core.model.ProductOffer;
 import net.omnypay.sdk.core.model.ReconciledTotal;
-import net.omnypay.sdk.allsdkdemo.adapters.BasketCartAdapter;
+import net.omnypay.sdk.allsdkdemo.adapters.BasketAdapter;
 import net.omnypay.sdk.wrapper.OmnyPayAPI;
 import net.omnypay.sdk.wrapper.OmnyPayCallback;
 import net.omnypay.sdk.wrapper.OmnyPayError;
@@ -50,7 +50,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
     private Button payButton;
     private View emptyView;
     private RecyclerView basketRecyclerView;
-    private BasketCartAdapter basketCartAdapter;
+    private BasketAdapter basketCartAdapter;
     private String paymentInstrumentId;
     private ProgressDialog progressDialog;
 
@@ -65,7 +65,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         payButton = (Button) findViewById(R.id.pay_button);
         emptyView = (View) findViewById(R.id.empty_view);
         basketRecyclerView = (RecyclerView) findViewById(R.id.basket_recycler_view);
-        basketCartAdapter = new BasketCartAdapter(null, null);
+        basketCartAdapter = new BasketAdapter(null, null);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CartActivity.this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         basketRecyclerView.setLayoutManager(linearLayoutManager);
