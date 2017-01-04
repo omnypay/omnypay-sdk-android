@@ -1,4 +1,4 @@
-package net.omnypay.sdk.exampleapp;
+package net.omnypay.sdk.allsdkdemo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

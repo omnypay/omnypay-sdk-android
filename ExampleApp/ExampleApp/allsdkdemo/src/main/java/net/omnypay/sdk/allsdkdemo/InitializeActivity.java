@@ -1,4 +1,4 @@
-package net.omnypay.sdk.exampleapp; /**
+package net.omnypay.sdk.allsdkdemo; /**
  * Copyright 2016 OmnyPay Inc.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,14 +24,15 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import net.omnypay.sdk.allsdkdemo.model.AuthenticationRequestParam;
+import net.omnypay.sdk.allsdkdemo.network.HttpOps;
+import net.omnypay.sdk.allsdkdemo.network.Listener;
 import net.omnypay.sdk.core.model.AuthenticatedSession;
-import net.omnypay.sdk.exampleapp.model.Authentication;
-import net.omnypay.sdk.exampleapp.model.AuthenticationRequestParam;
-import net.omnypay.sdk.exampleapp.network.HttpOps;
-import net.omnypay.sdk.exampleapp.network.Listener;
+import net.omnypay.sdk.core.model.Authentication;
 import net.omnypay.sdk.wrapper.OmnyPayAPI;
 import net.omnypay.sdk.wrapper.OmnyPayCallback;
 import net.omnypay.sdk.wrapper.OmnyPayError;
+
 
 /**
  * This class initializes example app with all the prerequisites for e.g. Merchant Id and User account
@@ -41,6 +42,7 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
 
     private Button initializeButton;
     private Button proceedButton;
+    private Button otherSDKDemo;
     private Authentication authentication;
     private Gson gson;
     private ProgressDialog progressDialog;
@@ -74,6 +76,8 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
         progressDialog = new ProgressDialog(this);
         initializeButton = (Button) findViewById(R.id.initializeButton);
         proceedButton = (Button) findViewById(R.id.proceedButton);
+        otherSDKDemo =(Button)findViewById(R.id.other_sdk_demos) ;
+        otherSDKDemo.setOnClickListener(this);
         proceedButton.setOnClickListener(this);
         initializeButton.setOnClickListener(this);
     }
@@ -194,7 +198,10 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
                 authenticateShopperWithCurrentSession();
                 break;
 
-
+            case R.id.other_sdk_demos:
+                Intent intent = new Intent(this, InitializeOtherSDKSActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 
