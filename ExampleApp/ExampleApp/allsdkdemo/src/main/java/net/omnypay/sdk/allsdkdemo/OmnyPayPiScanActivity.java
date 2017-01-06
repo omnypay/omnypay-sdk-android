@@ -18,15 +18,17 @@ import net.omnypay.omnypaypiscan.model.CardInformation;
 
 public class OmnyPayPiScanActivity extends AppCompatActivity implements View.OnClickListener {
     private Button scanButton;
-    private TextView scanResult;
+    private TextView cardNumberValue, cardCvvValue, cardExpiryDateValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_omnypay_dl);
+        setContentView(R.layout.activity_omnypay_pi);
         scanButton = (Button) findViewById(R.id.scanButton);
         scanButton.setOnClickListener(this);
-        scanResult = (TextView) findViewById(R.id.scanResult);
+        cardNumberValue = (TextView) findViewById(R.id.cardNumberValue);
+        cardCvvValue = (TextView) findViewById(R.id.cardCvvValue);
+        cardExpiryDateValue = (TextView) findViewById(R.id.cardExpiryDateValue);
     }
 
     @Override
@@ -35,7 +37,10 @@ public class OmnyPayPiScanActivity extends AppCompatActivity implements View.OnC
                 PaymentInstrumentScanCallback() {
                     @Override
                     public void onPaymentInstrumentScan(CardInformation cardInformation) {
-                        scanResult.setText(cardInformation.toString());
+                        cardNumberValue.setText(String.valueOf(cardInformation.getCardNumber()));
+                        cardCvvValue.setText(String.valueOf(cardInformation.getCardCvvCode()));
+                        cardExpiryDateValue.setText(String.valueOf(cardInformation.getCardExpiryDate()));
+
                     }
                 });
 

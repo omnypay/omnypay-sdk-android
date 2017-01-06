@@ -17,7 +17,7 @@ import net.omnypay.omnypaydlscan.model.IdentityData;
 public class OmnyPayDlScanActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button scanButton;
-    private TextView scanResult;
+    private TextView firstNameValue, lastNameValue, postalCodeValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,9 @@ public class OmnyPayDlScanActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_omnypay_dl);
         scanButton = (Button) findViewById(R.id.scanButton);
         scanButton.setOnClickListener(this);
-        scanResult = (TextView) findViewById(R.id.scanResult);
+        firstNameValue = (TextView) findViewById(R.id.firstNameValue);
+        lastNameValue = (TextView) findViewById(R.id.lastNameValue);
+        postalCodeValue = (TextView) findViewById(R.id.postalCodeValue);
     }
 
     @Override
@@ -35,7 +37,9 @@ public class OmnyPayDlScanActivity extends AppCompatActivity implements View.OnC
                 OmnyPayDlScanActivity.this, new DriversLicenseScanCallback() {
                     @Override
                     public void onDriversLicenseScan(IdentityData identityData) {
-                        scanResult.setText(identityData.toString());
+                        firstNameValue.setText(String.valueOf(identityData.getFirstName()));
+                        lastNameValue.setText(String.valueOf(identityData.getLastName()));
+                        postalCodeValue.setText(String.valueOf(identityData.getPostCode()));
                     }
                 });
     }

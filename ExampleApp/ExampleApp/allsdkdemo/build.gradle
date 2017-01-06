@@ -42,7 +42,6 @@ dependencies {
     compile "com.jumio.android:bam:${SDK_VERSION}@aar"
     compile "com.jumio.android:core:${SDK_VERSION}@aar"
     compile "com.jumio.android:nv:${SDK_VERSION}@aar"
-    compile "com.jumio.android:nv-ocr:${SDK_VERSION}@aar"
     compile 'com.journeyapps:zxing-android-embedded:3.3.0'
     compile 'com.squareup.okhttp:logging-interceptor:2.7.5'
     compile 'com.google.code.gson:gson:2.6.2'
@@ -50,8 +49,8 @@ dependencies {
     compile 'joda-time:joda-time:2.9.3'
     testCompile 'junit:junit:4.12'
     compile project(':OmnyPayAuth')
-    compile project(':OmnyPayDLScan')
     compile project(':OmnyPayAPI')
     compile project(':OmnyPayScan')
+    compile project(':OmnyPayDLScan')
     compile project(':OmnyPayPIScan')
 }
