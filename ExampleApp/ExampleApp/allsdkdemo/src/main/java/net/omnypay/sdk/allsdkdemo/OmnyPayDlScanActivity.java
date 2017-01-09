@@ -51,6 +51,19 @@ public class OmnyPayDlScanActivity extends AppCompatActivity implements View.OnC
 
     }
 
+    private void startDLScan() {
+        OmnyPayDLScanner.getInstance().start(
+                OmnyPayDlScanActivity.this, new DriversLicenseScanCallback() {
+                    @Override
+                    public void onDriversLicenseScan(IdentityData identityData) {
+                        firstNameValue.setText(String.valueOf(identityData.getFirstName()));
+                        lastNameValue.setText(String.valueOf(identityData.getLastName()));
+                        postalCodeValue.setText(String.valueOf(identityData.getPostCode()));
+                    }
+                });
+    }
+
+
     private  void requestCameraPermissions(View randomView) {
 
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,
@@ -74,17 +87,7 @@ public class OmnyPayDlScanActivity extends AppCompatActivity implements View.OnC
         }
     }
 
-    private void startDLScan() {
-        OmnyPayDLScanner.getInstance().start(
-                OmnyPayDlScanActivity.this, new DriversLicenseScanCallback() {
-                    @Override
-                    public void onDriversLicenseScan(IdentityData identityData) {
-                        firstNameValue.setText(String.valueOf(identityData.getFirstName()));
-                        lastNameValue.setText(String.valueOf(identityData.getLastName()));
-                        postalCodeValue.setText(String.valueOf(identityData.getPostCode()));
-                    }
-                });
-    }
+    
 
     @Override
     public  void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
