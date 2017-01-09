@@ -1,6 +1,10 @@
 package net.omnypay.sdk.allsdkdemo;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +21,7 @@ import net.omnypay.omnypaypiscan.model.CardInformation;
  */
 
 public class OmnyPayPiScanActivity extends AppCompatActivity implements View.OnClickListener {
+
     private Button scanButton;
     private TextView cardNumberValue, cardCvvValue, cardExpiryDateValue;
 
@@ -33,6 +38,10 @@ public class OmnyPayPiScanActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View view) {
+            startPIScan();
+    }
+
+    private void startPIScan() {
         OmnyPayPIScanner.getInstance().start(OmnyPayPiScanActivity.this, new
                 PaymentInstrumentScanCallback() {
                     @Override
@@ -43,7 +52,6 @@ public class OmnyPayPiScanActivity extends AppCompatActivity implements View.OnC
 
                     }
                 });
-
     }
 
 }
