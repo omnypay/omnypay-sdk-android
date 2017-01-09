@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import net.omnypay.omnypayauth.TouchAuthenticationManager;
+import net.omnypay.omnypayauth.OmnyPayAuth;
 import net.omnypay.omnypayauth.Authentication;
 
 
@@ -28,7 +28,7 @@ public class OmnyPayAuthScanActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onClick(View view) {
-        TouchAuthenticationManager.getInstance().initiateAuthentication(OmnyPayAuthScanActivity.this,
+        OmnyPayAuth.getInstance().start(OmnyPayAuthScanActivity.this,
                 password, "Title", new Authentication() {
                     @Override
                     public void authenticationComplete(boolean isAuthenticatedSuccessfully) {
