@@ -7,9 +7,6 @@
     <string name="sdk_description">This is an example app which will guide the user with
         integration of different OmnyPay SDKs</string>
 
-    <string name="decide">Decide</string>
-    <string name="permission_granted">Permission granted</string>
-    <string name="permission_not_granted">Permission not granted</string>
 
 
 <string name="initialize_omnypaypi_button">Initialize OmnyPay PI SDK</string>

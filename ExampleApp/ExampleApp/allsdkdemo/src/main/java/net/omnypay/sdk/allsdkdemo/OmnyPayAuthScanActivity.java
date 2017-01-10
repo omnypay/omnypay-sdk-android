@@ -6,9 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import net.omnypay.omnypayauth.OmnyPayAuth;
 import net.omnypay.omnypayauth.Authentication;
-
+import net.omnypay.omnypayauth.OmnyPayAuth;
 
 
 public class OmnyPayAuthScanActivity extends AppCompatActivity implements View.OnClickListener{

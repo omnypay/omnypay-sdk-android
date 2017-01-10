@@ -1,16 +1,11 @@
 package net.omnypay.sdk.allsdkdemo;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 
 import net.omnypay.omnypaypiscan.OmnyPayPIScanner;
 import net.omnypay.omnypaypiscan.PaymentInstrumentScanCallback;
@@ -39,29 +34,23 @@ public class OmnyPayPiScanActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View view) {
-            startPIScan();
+        startPIScan();
     }
 
     private void startPIScan() {
         OmnyPayPIScanner.getInstance().start(OmnyPayPiScanActivity.this, new
-                PaymentInstrumentScanCallback(){
+                PaymentInstrumentScanCallback() {
                     @Override
                     public void onPaymentInstrumentScan(CardInformation cardInformation) {
-                        if(cardInformation !=null)
-                        {
+                        if (cardInformation != null) {
                             cardNumberValue.setText(String.valueOf(cardInformation.getCardNumber()));
                             cardCvvValue.setText(String.valueOf(cardInformation.getCardCvvCode()));
                             cardExpiryDateValue.setText(String.valueOf(cardInformation.getCardExpiryDate()));
                         }
 
                     }
-                },true);
+                }, true);
     }
 
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        OmnyPayPIScanner.getInstance().onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
 }

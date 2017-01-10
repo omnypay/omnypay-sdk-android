@@ -3,6 +3,7 @@ package net.omnypay.sdk.allsdkdemo;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,7 @@ import net.omnypay.omnypaydlscan.model.IdentityData;
  * Created by MikiP on 03-01-2017.
  */
 
-public class OmnyPayDlScanActivity extends AppCompatActivity implements View.OnClickListener{
+public class OmnyPayDlScanActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button scanButton;
     private TextView firstNameValue, lastNameValue, postalCodeValue;
@@ -37,7 +38,7 @@ public class OmnyPayDlScanActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View view) {
-            startDLScan();
+        startDLScan();
     }
 
     private void startDLScan() {
@@ -45,15 +46,14 @@ public class OmnyPayDlScanActivity extends AppCompatActivity implements View.OnC
                 OmnyPayDlScanActivity.this, new DriversLicenseScanCallback() {
                     @Override
                     public void onDriversLicenseScan(IdentityData identityData) {
-                        if(identityData !=null)
-                        {
+                        if (identityData != null) {
                             firstNameValue.setText(String.valueOf(identityData.getFirstName()));
                             lastNameValue.setText(String.valueOf(identityData.getLastName()));
                             postalCodeValue.setText(String.valueOf(identityData.getPostCode()));
                         }
 
                     }
-                });
+                }, true);
     }
 
 }

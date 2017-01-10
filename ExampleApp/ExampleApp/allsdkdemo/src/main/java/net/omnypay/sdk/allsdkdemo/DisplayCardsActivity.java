@@ -190,7 +190,7 @@ public class DisplayCardsActivity extends AppCompatActivity implements View.OnCl
                     // POS Id retrieved, checking in basket now
                     checkIn(merchantPOSID);
                 }
-            });
+            },true);
         } catch (IOException e) {
             e.printStackTrace();
         }
