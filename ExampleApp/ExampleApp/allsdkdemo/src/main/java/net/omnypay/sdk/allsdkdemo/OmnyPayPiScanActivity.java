@@ -47,9 +47,12 @@ public class OmnyPayPiScanActivity extends AppCompatActivity implements View.OnC
                 PaymentInstrumentScanCallback(){
                     @Override
                     public void onPaymentInstrumentScan(CardInformation cardInformation) {
-                        cardNumberValue.setText(String.valueOf(cardInformation.getCardNumber()));
-                        cardCvvValue.setText(String.valueOf(cardInformation.getCardCvvCode()));
-                        cardExpiryDateValue.setText(String.valueOf(cardInformation.getCardExpiryDate()));
+                        if(cardInformation !=null)
+                        {
+                            cardNumberValue.setText(String.valueOf(cardInformation.getCardNumber()));
+                            cardCvvValue.setText(String.valueOf(cardInformation.getCardCvvCode()));
+                            cardExpiryDateValue.setText(String.valueOf(cardInformation.getCardExpiryDate()));
+                        }
 
                     }
                 },true);
