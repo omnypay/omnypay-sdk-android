@@ -3,6 +3,7 @@ package net.omnypay.sdk.allsdkdemo;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -43,7 +44,7 @@ public class OmnyPayPiScanActivity extends AppCompatActivity implements View.OnC
 
     private void startPIScan() {
         OmnyPayPIScanner.getInstance().start(OmnyPayPiScanActivity.this, new
-                PaymentInstrumentScanCallback() {
+                PaymentInstrumentScanCallback(){
                     @Override
                     public void onPaymentInstrumentScan(CardInformation cardInformation) {
                         cardNumberValue.setText(String.valueOf(cardInformation.getCardNumber()));
@@ -51,7 +52,13 @@ public class OmnyPayPiScanActivity extends AppCompatActivity implements View.OnC
                         cardExpiryDateValue.setText(String.valueOf(cardInformation.getCardExpiryDate()));
 
                     }
-                });
+                },true);
     }
 
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        OmnyPayPIScanner.getInstance().onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 }
