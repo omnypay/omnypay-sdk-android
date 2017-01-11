@@ -20,11 +20,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
 
 import net.omnypay.scan.OmnyPayScan;
 import net.omnypay.scan.ScannedResultCallback;
@@ -181,16 +183,19 @@ public class DisplayCardsActivity extends AppCompatActivity implements View.OnCl
      */
     private void scanQRCode() {
         try {
+            OmnyPayScan.getInstance().setCameraPermissionFailureMessage("Permission has " +
+                    "been declined by you Kindly visit the settings to enable it ");
             OmnyPayScan.getInstance().start(DisplayCardsActivity.this, new ScannedResultCallback() {
                 @Override
                 public void onScanResult(String posString) {
+                    Log.e("DisplayCardsActivity","posString= "+posString);
                     //Extract the POS id from QR code scan. This is merchant side validation of POS.
                     String merchantPOSID = validatePOSScanAndGetPOSid(posString);
 
                     // POS Id retrieved, checking in basket now
                     checkIn(merchantPOSID);
                 }
-            },true);
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }

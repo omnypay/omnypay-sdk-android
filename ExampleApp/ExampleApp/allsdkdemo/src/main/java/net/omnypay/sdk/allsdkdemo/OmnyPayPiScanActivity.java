@@ -3,6 +3,7 @@ package net.omnypay.sdk.allsdkdemo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,10 +39,13 @@ public class OmnyPayPiScanActivity extends AppCompatActivity implements View.OnC
     }
 
     private void startPIScan() {
+        OmnyPayPIScanner.getInstance().setCameraPermissionFailureMessage("Permission has " +
+                "been declined by you Kindly visit the settings to enable it ");
         OmnyPayPIScanner.getInstance().start(OmnyPayPiScanActivity.this, new
                 PaymentInstrumentScanCallback() {
                     @Override
                     public void onPaymentInstrumentScan(CardInformation cardInformation) {
+                        Log.e("OmnyPayPiScanActivity","cardInformation= "+cardInformation);
                         if (cardInformation != null) {
                             cardNumberValue.setText(String.valueOf(cardInformation.getCardNumber()));
                             cardCvvValue.setText(String.valueOf(cardInformation.getCardCvvCode()));
@@ -49,7 +53,7 @@ public class OmnyPayPiScanActivity extends AppCompatActivity implements View.OnC
                         }
 
                     }
-                }, true);
+                });
     }
 
 
