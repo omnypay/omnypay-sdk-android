@@ -27,7 +27,7 @@ import java.io.IOException;
 public class OmnyPayDlScanActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button scanButton;
-    private TextView firstNameValue, lastNameValue, postalCodeValue;
+    private TextView firstNameValue, lastNameValue, idValue, cityValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,8 @@ public class OmnyPayDlScanActivity extends AppCompatActivity implements View.OnC
         scanButton.setOnClickListener(this);
         firstNameValue = (TextView) findViewById(R.id.firstNameValue);
         lastNameValue = (TextView) findViewById(R.id.lastNameValue);
-        postalCodeValue = (TextView) findViewById(R.id.postalCodeValue);
+        idValue = (TextView) findViewById(R.id.idValue);
+        cityValue = (TextView) findViewById(R.id.cityValue);
     }
 
     @Override
@@ -56,7 +57,8 @@ public class OmnyPayDlScanActivity extends AppCompatActivity implements View.OnC
                         if (identityData != null) {
                             firstNameValue.setText(String.valueOf(identityData.getFirstName()));
                             lastNameValue.setText(String.valueOf(identityData.getLastName()));
-                            postalCodeValue.setText(String.valueOf(identityData.getPostCode()));
+                            idValue.setText(String.valueOf(identityData.getIdNumber()));
+                            cityValue.setText(String.valueOf(identityData.getCity()));
                         }
 
                     }

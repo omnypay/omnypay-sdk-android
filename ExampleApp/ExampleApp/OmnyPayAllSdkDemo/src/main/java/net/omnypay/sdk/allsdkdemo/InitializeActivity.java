@@ -50,17 +50,17 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
     /**
      * REPLACE MERCHANTID WITH YOUR MERCHANT ID
      */
-    private String merchantId = null;
+    private String merchantId = "f48dc858-0e8f-467e-ad1e-9cc36171ad19";
 
     /**
      * YOUR USERNAME
      */
-    private String username = null;
+    private String username = "talentica";
 
     /**
      * YOUR PASSWORD
      */
-    private String password = null;
+    private String password = "talentica";
     private String accountAuthenticationUrl = "http://pantheon.demo0.omnypay" +
             ".net:8080/identity/authentication";
 
