@@ -53,6 +53,15 @@
         android:layout_marginTop="40dp"
         android:text="@string/other_sdks"/>
 
+    <Button
+        android:id="@+id/instant_buy_demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appDescription"
+        android:layout_gravity="center_horizontal"
+        android:onClick="launchInstantBuy"
+        android:text="@string/instant_buy"/>
+
 
 </LinearLayout>
 

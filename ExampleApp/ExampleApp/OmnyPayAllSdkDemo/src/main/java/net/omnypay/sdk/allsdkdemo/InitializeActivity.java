@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import net.omnypay.sdk.allsdkdemo.instantbuy.InstantBuyHome;
 import net.omnypay.sdk.allsdkdemo.model.AuthenticationRequestParam;
 import net.omnypay.sdk.allsdkdemo.network.HttpOps;
 import net.omnypay.sdk.allsdkdemo.network.Listener;
@@ -76,7 +77,7 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
         progressDialog = new ProgressDialog(this);
         initializeButton = (Button) findViewById(R.id.initializeButton);
         proceedButton = (Button) findViewById(R.id.proceedButton);
-        otherSDKDemo =(Button)findViewById(R.id.other_sdk_demos) ;
+        otherSDKDemo = (Button) findViewById(R.id.other_sdk_demos);
         otherSDKDemo.setOnClickListener(this);
         proceedButton.setOnClickListener(this);
         initializeButton.setOnClickListener(this);
@@ -203,6 +204,11 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
                 startActivity(intent);
                 break;
         }
+    }
+
+    public void launchInstantBuy(View view) {
+        Intent instantBuyIntent = new Intent(this, InstantBuyHome.class);
+        startActivity(instantBuyIntent);
     }
 
     /**

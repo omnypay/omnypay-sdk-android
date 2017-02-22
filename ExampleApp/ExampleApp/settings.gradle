@@ -1,1 +1,1 @@
-include ':allsdkdemo', ':app'
+include ':OmnyPayAllSdkDemo', ':OmnyPayAPIDemo', ':OmnyPayAPI', ':OmnyPayAuth', ':OmnyPayDLScan', ':OmnyPayPIScan', ':OmnyPayScan'

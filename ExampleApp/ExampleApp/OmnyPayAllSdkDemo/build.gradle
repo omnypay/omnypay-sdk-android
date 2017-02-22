@@ -50,10 +50,11 @@ dependencies {
     compile 'org.java-websocket:Java-WebSocket:1.3.0'
     compile 'joda-time:joda-time:2.9.3'
     testCompile 'junit:junit:4.12'
+    compile 'com.samskivert:jmustache:1.13'
     //    compile project(':OmnyPayAPI')
+    compile project(':OmnyPayAPI')
     compile project(':OmnyPayAuth')
     compile project(':OmnyPayDLScan')
     compile project(':OmnyPayPIScan')
     compile project(':OmnyPayScan')
-    compile project(':OmnyPayAPIDemo')
 }

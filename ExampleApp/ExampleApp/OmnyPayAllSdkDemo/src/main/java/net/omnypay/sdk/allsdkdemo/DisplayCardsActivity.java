@@ -27,7 +27,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
 import net.omnypay.scan.OmnyPayScan;
 import net.omnypay.scan.ScannedResultCallback;
 import net.omnypay.sdk.allsdkdemo.adapters.PaymentCardAdapter;
@@ -59,6 +58,8 @@ public class DisplayCardsActivity extends AppCompatActivity implements View.OnCl
     private PaymentCardAdapter cardAdapter;
     private ProgressDialog progressDialog;
     private ArrayList<PaymentInstrumentOffers> paymentInstrumentArrayList;
+
+    private static final String POS_ID = "0eb35e259d070ed706643f821b094bea1114b755052250ff6ae28b07fd804f9a";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,7 +169,12 @@ public class DisplayCardsActivity extends AppCompatActivity implements View.OnCl
             public void onResult(Basket basket) {
                 progressDialog.cancel();
                 // Basket created successfully, Associating with Point of sale terminal now
-                scanQRCode();
+
+                if (getSharedPreferences("instantbuy", MODE_PRIVATE).contains("instantbuyitemdata")) {
+                    checkIn(POS_ID);
+                } else {
+                    scanQRCode();
+                }
             }
 
             @Override
@@ -188,7 +194,7 @@ public class DisplayCardsActivity extends AppCompatActivity implements View.OnCl
             OmnyPayScan.getInstance().start(DisplayCardsActivity.this, new ScannedResultCallback() {
                 @Override
                 public void onScanResult(String posString) {
-                    Log.e("DisplayCardsActivity","posString= "+posString);
+                    Log.e("DisplayCardsActivity", "posString= " + posString);
                     //Extract the POS id from QR code scan. This is merchant side validation of POS.
                     String merchantPOSID = validatePOSScanAndGetPOSid(posString);
 
@@ -249,8 +255,8 @@ public class DisplayCardsActivity extends AppCompatActivity implements View.OnCl
      * OmnyPaySDK has a method checkIn which associates a basket with the POS Terminal.
      */
     private void checkIn(String merchantPOSID) {
-        progressDialog.setMessage("Checking in");
-        progressDialog.show();
+//        progressDialog.setMessage("Checking in");
+//        progressDialog.show();
         OmnyPayAPI.checkIn(merchantPOSID, new OmnyPayCallback<MerchantPoS>() {
             @Override
             public void onResult(MerchantPoS merchantPoS) {

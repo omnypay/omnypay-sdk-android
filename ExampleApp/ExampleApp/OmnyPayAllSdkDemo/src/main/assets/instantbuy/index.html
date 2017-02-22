@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<title>Instant Buy Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<style>
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: relative;;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+
+#customization_holder
+{
+  width: 100%;
+  text-align: center;
+  display:inline-block;
+}
+
+/*#sizeSelectionButton
+{
+  width: 100%;
+  text-align: center;
+}*/
+
+</style>
+<head>
+<body>
+
+<h2 id="product_title" class="w3-center">Nike LunarEpic FlyKnit 3000</h2>
+
+<div class="w3-content w3-display-container">
+    <img class="mySlides"
+         src="http://www.shoescheapest.com/images/nikeshoes/cheap_nike_shoes_sale2959.jpg"
+         style="width:100%">
+    <img class="mySlides"
+         src="http://www.shoescheapest.com/images/nikeshoes/cheap_nike_shoes_sale2959_5.jpg"
+         style="width:100%">
+    <img class="mySlides"
+         src="http://www.shoescheapest.com/images/nikeshoes/cheap_nike_shoes_sale2959_4.jpg"
+         style="width:100%">
+    <img class="mySlides"
+         src="http://www.shoescheapest.com/images/nikeshoes/cheap_nike_shoes_sale2959_2.jpg"
+         style="width:100%">
+    <img class="mySlides"
+         src="http://www.shoescheapest.com/images/nikeshoes/cheap_nike_shoes_sale2958.jpg"
+         style="width:100%">
+
+    <a class="w3-btn-floating w3-display-left" onclick="plusDivs(-1)">&#10094;</a>
+    <a class="w3-btn-floating w3-display-right" onclick="plusDivs(1)">&#10095;</a>
+</div>
+<br/>
+<div id="product_price" class="w3-container w3-teal">
+    <h1>M.R.P. $47.99</h1>
+</div>
+<br/>
+<span id="size_selector">
+  <!-- <div style="text-align:center"><h2>Select size</h2></div> -->
+  <div class="w3-container w3-teal" style="text-align:center">
+    <h4>Select size</h4>
+  </div>
+  <br>
+  <div style="text-align:center">
+      <button id="sizeSelectionButton" onclick="myFunction('sizesDropdown')" class="dropbtn">Select Size</button>
+      <div id="sizesDropdown" class="dropdown-content">
+        <a href="#1" onclick="paramSelection('sizeSelectionButton', '70-75')">70-75</a>
+        <a href="#2" onclick="paramSelection('sizeSelectionButton', '75-80')">75-80</a>
+        <a href="#3" onclick="paramSelection('sizeSelectionButton', '80-85')">80-85</a>
+        <a href="#4" onclick="paramSelection('sizeSelectionButton', '85-90')">85-90</a>
+        <a href="#5" onclick="paramSelection('sizeSelectionButton', '90-95')">90-95</a>
+        <a href="#6" onclick="paramSelection('sizeSelectionButton', '95-100')">95-100</a>
+      </div>
+  </div>
+</span>
+<br/>
+<span id="qty_selector">
+  <!-- <div style="text-align:center"><h2>Select Quantity</h2></div> -->
+  <div class="w3-container w3-teal" style="text-align:center">
+    <h4>Select quantity</h4>
+  </div>
+  <br>
+  <div style="text-align:center">
+    <button id="qtySelectionBtn" onclick="myFunction('qtyDropdown')"
+            class="dropbtn">Select quantity</button>
+    <div id="qtyDropdown" class="dropdown-content">
+      <a href="#1" onclick="paramSelectionQTY('qtySelectionBtn', 'quantity = 1', 1)">1</a>
+      <a href="#2" onclick="paramSelectionQTY('qtySelectionBtn', 'quantity = 2', 2)">2</a>
+      <a href="#3" onclick="paramSelectionQTY('qtySelectionBtn', 'quantity = 3', 3)">3</a>
+      <a href="#4" onclick="paramSelectionQTY('qtySelectionBtn', 'quantity = 4', 4)">4</a>
+      <a href="#5" onclick="paramSelectionQTY('qtySelectionBtn', 'quantity = 5', 5)">5</a>
+    </div>
+  </div>
+</span>
+<br/>
+<span id="payment_selector">
+  <!-- <div style="text-align:center"><h2>Select Payment Instrument</h2></div> -->
+  <div class="w3-container w3-teal" style="text-align:center">
+    <h4>Select paymeny instrument</h4>
+  </div>
+  <br>
+  <div style="text-align:center">
+    <button id="piSelectionBtn" onclick="myFunction('piDropdown')" class="dropbtn">Select payment instrument</button>
+    <div id="piDropdown" class="dropdown-content">
+      <a href="#1" onclick="paramSelectionPI('piSelectionBtn', 'Debit XXXX-XXXX-XXXX-9023')">Debit XXXX-XXXX-XXXX-9023</a>
+      <a href="#2" onclick="paramSelectionPI('piSelectionBtn', 'Credit XXXX-XXXX-XXXX-0305')">Credit XXXX-XXXX-XXXX-0305</a>
+      <a href="#3" onclick="paramSelectionPI('piSelectionBtn', 'Cool Card XXXX-XXXX-XXXX-6989')">Cool Card XXXX-XXXX-XXXX-6989</a>
+    </div>
+  </div>
+</span>
+<br/>
+<span id="address_selector">
+  <!-- <div style="text-align:center"><h2>Select Payment Instrument</h2></div> -->
+  <div class="w3-container w3-teal" style="text-align:center">
+    <h4>Select shipping address</h4>
+  </div>
+  <br>
+  <div style="text-align:center">
+    <button id="saSelectionBtn" onclick="myFunction('saDropdown')" class="dropbtn">Select shipping address</button>
+    <div id="saDropdown" class="dropdown-content">
+      <a href="#1" onclick="paramSelectionADD('saSelectionBtn', 'Home adress')">Home address</a>
+      <a href="#2" onclick="paramSelectionADD('saSelectionBtn', 'Office address')">Office</a>
+      <a href="#3" onclick="paramSelectionADD('saSelectionBtn', 'Grand Ma')">Grand Ma</a>
+    </div>
+  </div>
+</span>
+<br/>
+
+<!-- <div class="w3-container w3-cyan">
+  <h1 text-align="center">M.R.P. $67.49</h1>
+  <button id="sizeS12Button" onclick="myFunction()" class="dropbtn">Select Size</button>
+</div> -->
+
+<!-- <div class="dropdown">
+    <h2>Select size</h2>
+    <h2>Select size</h2>
+    <button id="sizeSelectionButton" onclick="myFunction()" class="dropbtn">Select Size</button>
+    <div id="myDropdown" class="dropdown-content">
+      <a href="#1" onclick="sizeSelection('70-75')">70-75</a>
+      <a href="#2" onclick="sizeSelection('75-80')">75-80</a>
+      <a href="#3" onclick="sizeSelection('80-85')">80-85</a>
+      <a href="#4" onclick="sizeSelection('85-90')">85-90</a>
+      <a href="#5" onclick="sizeSelection('90-95')">90-95</a>
+      <a href="#6" onclick="sizeSelection('95-100')">95-100</a>
+    </div>
+</div> -->
+
+<!-- <img src="http://wallpaper-gallery.net/images/avatar-images/avatar-images-10.jpg" alt="Car"> -->
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="w3-container w3-blue-grey">
+    <p>Buy Instantly. On the go.</p>
+</div>
+
+<p>Click here to buy</p>
+
+<br/>
+<button class="w3-btn w3-teal" style="width:100%" onclick="buyNow()">Buy now</button>
+<br/>
+<script>
+
+  var skuDetails = {
+    "sku": "{{sku}}",
+    "name": "{{name}}",
+    "price": {{price}},
+    "qty": 1,
+    "shipping_address": "",
+    "payment_instrument": ""
+  };
+
+  document.getElementById("product_title").innerHTML = skuDetails.name;
+  document.getElementById("product_price").innerHTML = "<h1> M.R.P. $"+skuDetails.price + "</h1>";
+
+  var paymentInstruments = [{
+      "id":"1234",
+      "display":"Debit XXXX-XXXX-XXXX-9023",
+      "type":"DEBIT",
+      "expiry":"04/17/2019",
+      "issuing_bank":"HSBC"
+    },
+    {
+      "id":"2345",
+      "display":"Credit XXXX-XXXX-XXXX-0305",
+      "type":"CREDIT",
+      "expiry":"08/23/2021",
+      "issuing_bank":"Citi Bank"
+    },
+    {
+      "id":"3456",
+      "display":"Cool Card XXXX-XXXX-XXXX-6989",
+      "type":"COOLCARD",
+      "expiry":"02/28/2021",
+      "issuing_bank":"RBS Bank"
+    }
+  ];
+
+  function buyNow(){
+    omnypay.buyNow(skuDetails.sku, skuDetails.name, 100 * skuDetails.price, skuDetails.qty,
+    skuDetails.shipping_address, skuDetails.payment_instrument);
+  }
+
+</script>
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction(dropdownIdToToggle) {
+    document.getElementById(dropdownIdToToggle).classList.toggle("show");
+}
+
+function paramSelection(elementId, displayText) {
+    document.getElementById(elementId).innerHTML = displayText;
+    closeDropDowns();
+}
+
+function paramSelectionQTY(elementId, displayText, quantity) {
+    skuDetails.qty = quantity;
+    document.getElementById(elementId).innerHTML = displayText;
+    closeDropDowns();
+}
+
+function paramSelectionPI(elementId, displayText) {
+    skuDetails.payment_instrument = displayText;
+    document.getElementById(elementId).innerHTML = displayText;
+    closeDropDowns();
+}
+
+function paramSelectionADD(elementId, displayText) {
+    skuDetails.shipping_address = displayText;
+    document.getElementById(elementId).innerHTML = displayText;
+    closeDropDowns();
+}
+
+function closeDropDowns() {
+  var dropdowns = document.getElementsByClassName("dropdown-content");
+  var i;
+  for (i = 0; i < dropdowns.length; i++) {
+    var openDropdown = dropdowns[i];
+    if (openDropdown.classList.contains('show')) {
+      openDropdown.classList.remove('show');
+    }
+  }
+}
+// function qtySelected() {
+//     document.getElementById("qtyDropdown").classList.toggle("show");
+// }
+//
+// function piSelected() {
+//     document.getElementById("piDropdown").classList.toggle("show");
+// }
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+// function sizeSelection(size) {
+//   document.getElementById("sizeSelectionButton").innerHTML = size;
+// }
+//
+// function qtySelection(qty) {
+//   document.getElementById("qtySelectionBtn").innerHTML = qty;
+// }
+
+</script>
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  x[slideIndex-1].style.display = "block";
+}
+
+</script>
+
+</body>
+</head>
+</html>

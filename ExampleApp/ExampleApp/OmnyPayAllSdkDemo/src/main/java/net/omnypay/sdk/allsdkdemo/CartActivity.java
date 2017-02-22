@@ -21,26 +21,33 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import net.omnypay.sdk.allsdkdemo.adapters.BasketAdapter;
 import net.omnypay.sdk.allsdkdemo.utils.Constants;
 import net.omnypay.sdk.core.model.Basket;
 import net.omnypay.sdk.core.model.BasketPaymentConfirmation;
 import net.omnypay.sdk.core.model.BasketReceipt;
+import net.omnypay.sdk.core.model.Item;
 import net.omnypay.sdk.core.model.ProductOffer;
 import net.omnypay.sdk.core.model.ReconciledTotal;
-import net.omnypay.sdk.allsdkdemo.adapters.BasketAdapter;
 import net.omnypay.sdk.wrapper.OmnyPayAPI;
 import net.omnypay.sdk.wrapper.OmnyPayCallback;
 import net.omnypay.sdk.wrapper.OmnyPayError;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,6 +60,8 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
     private BasketAdapter basketCartAdapter;
     private String paymentInstrumentId;
     private ProgressDialog progressDialog;
+
+    private boolean isInstantBuyItemUpdated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +81,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         basketRecyclerView.setAdapter(basketCartAdapter);
         payButton.setOnClickListener(this);
         paymentInstrumentId = getIntent().getExtras().getString(Constants.PAYMENT_INSTRUMENT_ID_KEY);
-        progressDialog=new ProgressDialog(this);
+        progressDialog = new ProgressDialog(this);
     }
 
     /**
@@ -148,7 +157,6 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
                         displayUpdatedBasket(updatedBasket);
                     }
                     break;
-
                 //Offers received. Save it or Display it as per choice.
                 case OmnyPayAPI.ACTION_POST_PURCHASE_OFFER:
                     break;
@@ -175,12 +183,56 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
          */
         LocalBroadcastManager.getInstance(CartActivity.this).registerReceiver
                 (basketUpdateReceiver, intentFilter);
+
+        if (!isInstantBuyItemUpdated) {
+            updateInstantBuyItem();
+            isInstantBuyItemUpdated = true;
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         LocalBroadcastManager.getInstance(CartActivity.this).unregisterReceiver(basketUpdateReceiver);
+    }
+
+    private void updateInstantBuyItem() {
+        SharedPreferences prefs = getSharedPreferences("instantbuy", MODE_PRIVATE);
+        String productJSON = prefs.getString("instantbuyitemdata", null);
+        if (productJSON != null) {
+            try {
+                JSONObject product = new JSONObject(productJSON);
+
+                String sku = product.getString("sku");
+                String name = product.getString("name");
+                long price = (long) (product.getDouble("price") * 100);
+                long qty = product.getLong("qty");
+
+                Item productItem = new Item();
+                productItem.setName(name);
+                productItem.setSku(sku);
+                productItem.setPrice(price);
+                productItem.setQty(qty);
+
+                List<Item> instantBuyProducts = new ArrayList<>();
+                instantBuyProducts.add(productItem);
+
+                OmnyPayAPI.updateBasket(instantBuyProducts, new OmnyPayCallback<Basket>() {
+                    @Override
+                    public void onResult(Basket basket) {
+                        Log.d("","");
+                    }
+
+                    @Override
+                    public void onFailure(OmnyPayError omnyPayError) {
+                        Log.d("","");
+                    }
+                });
+
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
     @Override
