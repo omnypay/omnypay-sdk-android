@@ -63,6 +63,8 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
     private boolean isInstantBuyItemUpdated = false;
 
+    private OmnyPayAPI omnyPayAPI = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +84,8 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         payButton.setOnClickListener(this);
         paymentInstrumentId = getIntent().getExtras().getString(Constants.PAYMENT_INSTRUMENT_ID_KEY);
         progressDialog = new ProgressDialog(this);
+
+        omnyPayAPI = new OmnyPayAPI(CartActivity.this);
     }
 
     /**
@@ -93,8 +97,8 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                setDiscountedCentsForProduct(basket.getOffers(), basket.getReconciledTotal());
-                basketCartAdapter.setResourceList(basket.getItems(), basket.getOffers());
+                setDiscountedCentsForProduct(basket.getProductOffers(), basket.getReconciledTotal());
+                basketCartAdapter.setResourceList(basket.getItems(), basket.getProductOffers());
                 if (basket.getItems().size() == 0) {
                     basketRecyclerView.setVisibility(View.GONE);
                     emptyView.setVisibility(View.VISIBLE);
@@ -135,7 +139,8 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
                 // Payment is completed. Display Payment Receipt now.
                 case OmnyPayAPI.ACTION_BASKET_RECEIPT_UPDATE:
                     final BasketReceipt basketReceipt = (BasketReceipt) intent.getSerializableExtra(OmnyPayAPI.BROADCAST_DATA);
-                    setDiscountedCentsForProduct(basketReceipt.getOffers(), basketReceipt.getReconciledTotal());
+                    setDiscountedCentsForProduct(basketReceipt.getProductOffers(), basketReceipt
+                            .getReconciledTotal());
                     progressDialog.cancel();
                     Intent receiptClass = new Intent(CartActivity.this, ReceiptActivity.class);
                     receiptClass.putExtra(Constants.TRANSACTION_SUMMARY, basketReceipt);
@@ -217,7 +222,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
                 List<Item> instantBuyProducts = new ArrayList<>();
                 instantBuyProducts.add(productItem);
 
-                OmnyPayAPI.updateBasket(instantBuyProducts, new OmnyPayCallback<Basket>() {
+                omnyPayAPI.updateBasket(instantBuyProducts, new OmnyPayCallback<Basket>() {
                     @Override
                     public void onResult(Basket basket) {
                         Log.d("","");
@@ -245,7 +250,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
          * selected payment instrument. In this sample app,  if no payment instrument is
          * selected, then payment is done using the first payment instrument added.
          */
-        OmnyPayAPI.startPayment(paymentInstrumentId, new OmnyPayCallback<BasketPaymentConfirmation>() {
+        omnyPayAPI.startPayment(paymentInstrumentId, new OmnyPayCallback<BasketPaymentConfirmation>() {
             @Override
             public void onResult(BasketPaymentConfirmation basketPaymentConfirmation) {
                 // Payment initiation successful, waiting for payment completion by Point of Sale

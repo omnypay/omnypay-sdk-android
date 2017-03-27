@@ -52,13 +52,13 @@ public class AddCardActivity extends AppCompatActivity implements View.OnClickLi
     private int selection = 0;
     private ProgressDialog progressDialog;
 
+    private OmnyPayAPI omnyPayAPI = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_card);
         initializeVariables();
-
     }
 
     private void initializeVariables() {
@@ -77,6 +77,8 @@ public class AddCardActivity extends AppCompatActivity implements View.OnClickLi
         okButton.setOnClickListener(this);
         cardType.setOnItemSelectedListener(this);
         progressDialog = new ProgressDialog(this);
+
+        omnyPayAPI = new OmnyPayAPI(AddCardActivity.this);
     }
 
     private void validations() {
@@ -133,7 +135,8 @@ public class AddCardActivity extends AppCompatActivity implements View.OnClickLi
                  * configuration requested during merchant onboarding, OmnyPay SDK will connect to its own vault or
                  * a third party vault including that of a retailer.
                  */
-                OmnyPayAPI.provisionPaymentInstrument(provisionCardParam, new OmnyPayCallback<PaymentInstrumentInfo>() {
+                omnyPayAPI.provisionPaymentInstrument(provisionCardParam, new
+                        OmnyPayCallback<PaymentInstrumentInfo>() {
                     @Override
                     public void onResult(PaymentInstrumentInfo paymentInstrumentInfo) {
                         progressDialog.cancel();

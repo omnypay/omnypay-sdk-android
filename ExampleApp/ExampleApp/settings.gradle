@@ -1,1 +1,1 @@
-include ':OmnyPayAllSdkDemo', ':OmnyPayAPIDemo', ':OmnyPayAPI', ':OmnyPayAuth', ':OmnyPayDLScan', ':OmnyPayPIScan', ':OmnyPayScan'
+include ':OmnyPayAllSdkDemo', ':OmnyPayAPIDemo', ':omnypayauth-release', ':omnypaydlscan-release', ':omnypaypiscan-release', ':omnypayscan-release', ':omnypaysdk-demo-release'
