@@ -37,7 +37,7 @@ OmnyPay android SDK enables retailer/merchant android apps to integrate OmnyPay'
     - compile 'com.squareup.okhttp:logging-interceptor:2.7.5' (required for OmnyPayAPI & OmnyPayIdentity)
     - compile 'com.google.code.gson:gson:2.6.2' (required for OmnyPayAPI)
     - compile 'joda-time:joda-time:2.9.3' (required for OmnyPayAPI)
-    - compile 'org.java-websocket:Java-WebSocket:1.3.0' (required for OmnyPayAPI)
+    - compile 'com.neovisionaries:nv-websocket-client:1.31' (required for OmnyPayAPI)
     - compile 'com.google.android.gms:play-services-gcm:8.1.0' (required for OmnyPayAPI)
     - Add Jumio dependency in app level build.gradle
 ```groovy
@@ -74,7 +74,7 @@ Until we support Gradle installation, you can integrate OmnyPay into your projec
 ## Integrating with core services
 There are two main classes of SDK:
 
-- **OmnyPayAPI**: A static class that is used to access all OmnyPay APIs.
+- **OmnyPayAPI**: A java class that is used to access all OmnyPay APIs.
 - **OmnyPayCallback**: A generic callback interface for API responses.
 
 ## Minimum steps required
@@ -98,7 +98,8 @@ An example flow can be created as below:
 
 ```java
     // merchantId received as a part of registration process
-    OmnyPayAPI.initialize(context, merchantId, null, new OmnyPayCallback<Session>(){
+    OmnyPayAPI omnyPayAPI = new OmnyPayAPI(context);
+    omnyPayAPI.initialize(context, merchantId, null, new OmnyPayCallback<Session>(){
         @Override
         public void onResult(Session session) {
             // Initialization complete
@@ -118,7 +119,8 @@ Authenticate the user with your Identity service (which in turn can be catered b
 ### Authenticate user (shopper) on OmnyPay platform by passing your user/shopper id and auth token
 
 ```java
-    OmnyPayAPI.authenticateShopper(merchantShopperId, merchantAuthToken, 
+    OmnyPayAPI omnyPayAPI = new OmnyPayAPI(context);
+    omnyPayAPI.authenticateShopper(merchantShopperId, merchantAuthToken, 
         new OmnypayCallback<AuthenticatedSession>() {
               @Override
               public void onResult(AuthenticatedSession result) {
@@ -145,7 +147,8 @@ Depending on the vault configuration requested during merchant onboarding, OmnyP
     provisionCardParam.setCardExpiryDate("July-24, 2020");
     provisionCardParam.setCardHolderName("Jane Wilson");
 
-    OmnyPayAPI.provisionPaymentInstrument(provisionCardParam, new 
+    OmnyPayAPI omnyPayAPI = new OmnyPayAPI(context);
+    omnyPayAPI.provisionPaymentInstrument(provisionCardParam, new 
                             OmnyPayCallback<PaymentInstrumentInfo>(){
         @Override
         void onResult(PaymentInstrumentInfo pi){
@@ -163,7 +166,8 @@ Depending on the vault configuration requested during merchant onboarding, OmnyP
 Every OmnyPay transaction should have a basket object. The basket object is used to store information about the transaction such as association with the retailer’s point of sale, line items or products purchased, associated offers, loyalty points, etc.
 
 ```java
-    OmnyPayAPI.createBasket(new OmnyPayCallback<Basket>() {
+    OmnyPayAPI omnyPayAPI = new OmnyPayAPI(context);
+    omnyPayAPI.createBasket(new OmnyPayCallback<Basket>() {
         @Override
         public void onResult(Basket basket) {
             // Basket created successfully
@@ -198,7 +202,8 @@ Prerequisites:
 - AuthenticatedShopper
 
 ```java
-    OmnyPayAPI.checkIn(posID, new OmnyPayCallback<MerchantPos>() {
+    OmnyPayAPI omnyPayAPI = new OmnyPayAPI(context);
+    omnyPayAPI.checkIn(posID, new OmnyPayCallback<MerchantPos>() {
         @Override
         public void onResult(MerchantPos result) {
             // Basket successfully associated, now either choose the payment method
@@ -259,7 +264,8 @@ Prerequisite:
 - Optional – Coupons or Offers selected
 
 ```java
-    OmnyPayAPI.previewBasketForPaymentInstrument(paymentInstrumentID, new
+    OmnyPayAPI omnyPayAPI = new OmnyPayAPI(context);
+    omnyPayAPI.previewBasketForPaymentInstrument(paymentInstrumentID, new
             OmnyPayCallback<BasketPreview>() {
         @Override
         public void onResult(BasketPreview result) {
@@ -288,7 +294,8 @@ Prerequisite:
 - Optional – PreviewPayment done to estimate taxes, card-linked offers 
 
 ```java
-    OmnyPayAPI.startPayment(paymentInstrumentationID, OmnyPayCallback
+    OmnyPayAPI omnyPayAPI = new OmnyPayAPI(context);
+    omnyPayAPI.startPayment(paymentInstrumentationID, OmnyPayCallback
                                         <BasketPaymentConfirmation>() {
         @Override
         public void onFailure(OmnyPayError omnyPayError) {
@@ -313,7 +320,8 @@ Prerequisite:
 - Basket with a non-zero subtotal value.
 
 ```java
-    OmnyPayAPI.getPaymentReceipt(new OmnyPayCallback<BasketReceipt>() {
+    OmnyPayAPI omnyPayAPI = new OmnyPayAPI(context);
+    omnyPayAPI.getPaymentReceipt(new OmnyPayCallback<BasketReceipt>() {
         @Override
         public void onFailure(OmnyPayError omnyPayError) {
             // Failed to fetch receipts
