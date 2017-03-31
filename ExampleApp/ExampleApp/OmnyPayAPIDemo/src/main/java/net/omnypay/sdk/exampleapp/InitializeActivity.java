@@ -62,6 +62,8 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
     private String accountAuthenticationUrl = "http://pantheon.demo0.omnypay" +
             ".net:8080/identity/authentication";
 
+    private OmnyPayAPI omnyPayApi = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +78,8 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
         proceedButton = (Button) findViewById(R.id.proceedButton);
         proceedButton.setOnClickListener(this);
         initializeButton.setOnClickListener(this);
+
+        omnyPayApi = new OmnyPayAPI(InitializeActivity.this);
     }
 
     /**
@@ -86,7 +90,7 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
     private void initializeSDK() {
         progressDialog.setMessage("Initializing SDK ");
         progressDialog.show();
-        OmnyPayAPI.initialize(InitializeActivity.this, merchantId, null, new
+        omnyPayApi.initialize(merchantId, null, new
                 OmnyPayCallback<Void>() {
                     @Override
                     public void onResult(Void aVoid) {
@@ -157,7 +161,7 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
     private void authenticateShopperWithCurrentSession() {
         progressDialog.setMessage(" Authenticating Shopper ");
         progressDialog.show();
-        OmnyPayAPI.authenticateShopper(authentication.getMerchantShopperId(), authentication
+        omnyPayApi.authenticateShopper(authentication.getMerchantShopperId(), authentication
                 .getMerchantAuthToken(), new OmnyPayCallback<AuthenticatedSession>() {
             @Override
             public void onResult(AuthenticatedSession authenticatedSession) {

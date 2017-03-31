@@ -51,10 +51,9 @@ dependencies {
     compile 'joda-time:joda-time:2.9.3'
     testCompile 'junit:junit:4.12'
     compile 'com.samskivert:jmustache:1.13'
-    //    compile project(':OmnyPayAPI')
-    compile project(':OmnyPayAPI')
-    compile project(':OmnyPayAuth')
-    compile project(':OmnyPayDLScan')
-    compile project(':OmnyPayPIScan')
-    compile project(':OmnyPayScan')
+    compile project(':omnypayauth-release')
+    compile project(':omnypaydlscan-release')
+    compile project(':omnypaypiscan-release')
+    compile project(':omnypayscan-release')
+    compile project(':omnypaysdk-demo-release')
 }

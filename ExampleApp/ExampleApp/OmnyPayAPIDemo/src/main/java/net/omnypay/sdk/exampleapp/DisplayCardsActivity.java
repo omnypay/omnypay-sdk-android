@@ -59,6 +59,8 @@ public class DisplayCardsActivity extends AppCompatActivity implements View.OnCl
     private ProgressDialog progressDialog;
     private ArrayList<PaymentInstrumentOffers> paymentInstrumentArrayList;
 
+    private OmnyPayAPI omnyPayApi = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +89,8 @@ public class DisplayCardsActivity extends AppCompatActivity implements View.OnCl
         proceedButton.setOnClickListener(this);
         proceedButton.setEnabled(false);
         progressDialog = new ProgressDialog(this);
+
+        omnyPayApi = new OmnyPayAPI(DisplayCardsActivity.this);
     }
 
     @Override
@@ -106,7 +110,7 @@ public class DisplayCardsActivity extends AppCompatActivity implements View.OnCl
      * Payment instrument can be selected by selecting other available payment instruments.
      */
     private void getAllPaymentInstruments() {
-        OmnyPayAPI.getPaymentInstrument(new OmnyPayCallback<List<PaymentInstrumentOffers>>() {
+        omnyPayApi.getPaymentInstrument(new OmnyPayCallback<List<PaymentInstrumentOffers>>() {
             @Override
             public void onResult(final List<PaymentInstrumentOffers> paymentInstrumentOffers) {
                 // Payment instruments received, display it in UI
@@ -162,7 +166,7 @@ public class DisplayCardsActivity extends AppCompatActivity implements View.OnCl
      */
     private void createBasket() {
         progressDialog.setMessage("Creating Basket");
-        OmnyPayAPI.createBasket(new OmnyPayCallback<Basket>() {
+        omnyPayApi.createBasket(new OmnyPayCallback<Basket>() {
             @Override
             public void onResult(Basket basket) {
                 progressDialog.cancel();
@@ -247,7 +251,7 @@ public class DisplayCardsActivity extends AppCompatActivity implements View.OnCl
     private void checkIn(String merchantPOSID) {
         progressDialog.setMessage("Checking in");
         progressDialog.show();
-        OmnyPayAPI.checkIn(merchantPOSID, new OmnyPayCallback<MerchantPoS>() {
+        omnyPayApi.checkIn(merchantPOSID, new OmnyPayCallback<MerchantPoS>() {
             @Override
             public void onResult(MerchantPoS merchantPoS) {
                 progressDialog.cancel();

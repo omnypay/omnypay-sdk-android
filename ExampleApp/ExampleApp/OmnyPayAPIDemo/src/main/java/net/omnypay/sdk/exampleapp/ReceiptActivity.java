@@ -28,6 +28,7 @@ import android.widget.TextView;
 import net.omnypay.sdk.core.model.BasketReceipt;
 import net.omnypay.sdk.core.model.Item;
 import net.omnypay.sdk.core.model.ReconciledTotal;
+import net.omnypay.sdk.core.model.TotalPayment;
 import net.omnypay.sdk.core.model.TotalSummary;
 import net.omnypay.sdk.exampleapp.adapters.BasketAdapter;
 import net.omnypay.sdk.exampleapp.utils.Constants;
@@ -62,7 +63,7 @@ public class ReceiptActivity extends AppCompatActivity implements View.OnClickLi
 
 
         basketReceipt = (BasketReceipt) getIntent().getSerializableExtra(Constants.TRANSACTION_SUMMARY);
-        TotalSummary totalSummary = basketReceipt.getReceipt().getTotalSummary().get(0);
+        TotalPayment totalPayment = basketReceipt.getReceipt().getTotalSummary().get(0);
 
         setTotalPriceForItems(basketReceipt.getItems(), basketReceipt.getReconciledTotal());
 
@@ -72,10 +73,10 @@ public class ReceiptActivity extends AppCompatActivity implements View.OnClickLi
         receiptItemsRecyclerView.setLayoutManager(linearLayoutManager);
         receiptItemsRecyclerView.setAdapter(receiptCartAdapter);
 
-        subtotal.setText("" + totalSummary.getTotal());
-        taxes.setText("" + totalSummary.getTax());
-        discount.setText("" + totalSummary.getDiscountedTotal());
-        totalPaid.setText("" + totalSummary.getPaymentTotal());
+        subtotal.setText("" + totalPayment.getTotal());
+        taxes.setText("" + totalPayment.getTax());
+        discount.setText("" + totalPayment.getDiscountedTotal());
+        totalPaid.setText("" + totalPayment.getPaymentTotal());
 
         homeButton.setOnClickListener(this);
     }
