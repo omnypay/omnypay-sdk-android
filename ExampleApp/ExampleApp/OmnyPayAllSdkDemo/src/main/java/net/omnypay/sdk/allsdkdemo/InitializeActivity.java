@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import net.omnypay.sdk.allsdkdemo.instantbuy.InstantBuyHome;
 import net.omnypay.sdk.allsdkdemo.model.AuthenticationRequestParam;
 import net.omnypay.sdk.allsdkdemo.network.HttpOps;
 import net.omnypay.sdk.allsdkdemo.network.Listener;
@@ -51,17 +50,17 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
     /**
      * REPLACE MERCHANTID WITH YOUR MERCHANT ID
      */
-    private String merchantId = "f48dc858-0e8f-467e-ad1e-9cc36171ad19";
+    private String merchantId = null;
 
     /**
      * YOUR USERNAME
      */
-    private String username = "talentica";
+    private String username = null;
 
     /**
      * YOUR PASSWORD
      */
-    private String password = "talentica";
+    private String password = null;
     private String accountAuthenticationUrl = "http://pantheon.demo0.omnypay" +
             ".net:8080/identity/authentication";
 
@@ -210,10 +209,6 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    public void launchInstantBuy(View view) {
-        Intent instantBuyIntent = new Intent(this, InstantBuyHome.class);
-        startActivity(instantBuyIntent);
-    }
 
     /**
      * The displayToast method is used for displaying Toast messages in the app for every

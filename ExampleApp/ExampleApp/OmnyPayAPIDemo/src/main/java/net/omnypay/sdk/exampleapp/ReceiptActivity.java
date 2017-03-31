@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import net.omnypay.sdk.core.model.BasketLineItem;
 import net.omnypay.sdk.core.model.BasketReceipt;
 import net.omnypay.sdk.core.model.Item;
 import net.omnypay.sdk.core.model.ReconciledTotal;
@@ -63,7 +64,7 @@ public class ReceiptActivity extends AppCompatActivity implements View.OnClickLi
 
 
         basketReceipt = (BasketReceipt) getIntent().getSerializableExtra(Constants.TRANSACTION_SUMMARY);
-        TotalPayment totalPayment = basketReceipt.getReceipt().getTotalSummary().get(0);
+        TotalPayment totalPayment = basketReceipt.getTotalPayments().get(0);
 
         setTotalPriceForItems(basketReceipt.getItems(), basketReceipt.getReconciledTotal());
 
@@ -95,9 +96,9 @@ public class ReceiptActivity extends AppCompatActivity implements View.OnClickLi
      * @param items            List of items received from OmnyPay service
      * @param reconciledTotals List of reconciled total received from OmnyPay service
      */
-    private void setTotalPriceForItems(List<Item> items, List<ReconciledTotal> reconciledTotals) {
+    private void setTotalPriceForItems(List<BasketLineItem> items, List<ReconciledTotal> reconciledTotals) {
 
-        for (Item item : items) {
+        for (BasketLineItem item : items) {
             for (ReconciledTotal reconciledTotal : reconciledTotals)
                 if (item.getSku().equals(reconciledTotal.getSku())) {
                     item.setPrice(reconciledTotal.getTotal());

@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import net.omnypay.sdk.core.model.BasketLineItem;
 import net.omnypay.sdk.core.model.Item;
 import net.omnypay.sdk.core.model.ProductOffer;
+import net.omnypay.sdk.core.model.SkuOffer;
 import net.omnypay.sdk.exampleapp.R;
 
 import java.util.ArrayList;
@@ -21,25 +23,25 @@ import java.util.List;
 
 public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private final int PRODUCT_OFFER = 1;
+    private final int SKU_OFFER = 1;
     private final int BASKET_ITEM = 2;
     private ArrayList<Object> basketItems = new ArrayList<Object>();
 
 
-    public BasketAdapter(List<Item> items, List<ProductOffer> productOffers) {
+    public BasketAdapter(List<BasketLineItem> items, List<SkuOffer> skuOffers) {
         if (items != null) {
-            buildBasketRecyclerViewItems(items, productOffers);
+            buildBasketRecyclerViewItems(items, skuOffers);
         }
     }
 
-    private void buildBasketRecyclerViewItems(List<Item> items, List<ProductOffer> productOffers) {
+    private void buildBasketRecyclerViewItems(List<BasketLineItem> items, List<SkuOffer> skuOffers) {
         basketItems.clear();
-        for (Item item : items) {
+        for (BasketLineItem item : items) {
             basketItems.add(item);
-            if (productOffers != null) {
-                for (ProductOffer productOffer : productOffers) {
-                    if (item.getSku().equals(productOffer.getSku())) {
-                        basketItems.add(productOffer);
+            if (skuOffers != null) {
+                for (SkuOffer skuOffer : skuOffers) {
+                    if (item.getSku().equals(skuOffer.getSku())) {
+                        basketItems.add(skuOffer);
                     }
 
                 }
@@ -54,9 +56,9 @@ public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         RecyclerView.ViewHolder viewHolder;
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         switch (viewType) {
-            case PRODUCT_OFFER:
+            case SKU_OFFER:
                 View v2 = inflater.inflate(R.layout.product_offer_layout, parent, false);
-                viewHolder = new ProductOfferViewHolder(v2);
+                viewHolder = new SkuOfferViewHolder(v2);
                 break;
 
             default:
@@ -73,7 +75,7 @@ public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         switch (holder.getItemViewType()) {
             case BASKET_ITEM:
                 BasketItemViewHolder basketItemViewHolder = (BasketItemViewHolder) holder;
-                Item item = (Item) basketItems.get(position);
+                BasketLineItem item = (BasketLineItem) basketItems.get(position);
                 if (item != null) {
                     basketItemViewHolder.itemName.setText(item.getName());
                     basketItemViewHolder.itemQuantity.setText("" + item.getQty());
@@ -83,12 +85,12 @@ public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 break;
 
 
-            case PRODUCT_OFFER:
-                ProductOfferViewHolder productOfferViewHolder = (ProductOfferViewHolder) holder;
-                ProductOffer productOffer = (ProductOffer) basketItems.get(position);
-                if (productOffer != null) {
-                    productOfferViewHolder.offerName.setText(productOffer.getTitle());
-                    productOfferViewHolder.offerPrice.setText("" + productOffer.getDiscountCents());
+            case SKU_OFFER:
+                SkuOfferViewHolder skuOfferViewHolder = (SkuOfferViewHolder) holder;
+                SkuOffer skuOffer = (SkuOffer) basketItems.get(position);
+                if (skuOffer != null) {
+                    skuOfferViewHolder.offerName.setText(skuOffer.getTitle());
+                    skuOfferViewHolder.offerPrice.setText("" + skuOffer.getDiscountCents());
                 }
                 break;
         }
@@ -101,26 +103,26 @@ public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public int getItemViewType(int position) {
-        if (basketItems.get(position) instanceof Item) {
+        if (basketItems.get(position) instanceof BasketLineItem) {
             return BASKET_ITEM;
         } else {
-            return PRODUCT_OFFER;
+            return SKU_OFFER;
         }
 
     }
 
-    public void setResourceList(List<Item> items, List<ProductOffer> productOffers) {
+    public void setResourceList(List<BasketLineItem> items, List<SkuOffer> skuOffers) {
         if (items != null) {
-            buildBasketRecyclerViewItems(items, productOffers);
+            buildBasketRecyclerViewItems(items, skuOffers);
             notifyDataSetChanged();
         }
     }
 
-    private class ProductOfferViewHolder extends RecyclerView.ViewHolder {
+    private class SkuOfferViewHolder extends RecyclerView.ViewHolder {
 
         private TextView offerName, offerPrice;
 
-        public ProductOfferViewHolder(View v) {
+        public SkuOfferViewHolder(View v) {
             super(v);
             offerName = (TextView) v.findViewById(R.id.offer_name);
             offerPrice = (TextView) v.findViewById(R.id.offer_value);
