@@ -40,6 +40,7 @@ import net.omnypay.sdk.core.model.BasketReceipt;
 import net.omnypay.sdk.core.model.Item;
 import net.omnypay.sdk.core.model.ProductOffer;
 import net.omnypay.sdk.core.model.ReconciledTotal;
+import net.omnypay.sdk.core.model.SkuOffer;
 import net.omnypay.sdk.wrapper.OmnyPayAPI;
 import net.omnypay.sdk.wrapper.OmnyPayCallback;
 import net.omnypay.sdk.wrapper.OmnyPayError;
@@ -60,8 +61,6 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
     private BasketAdapter basketCartAdapter;
     private String paymentInstrumentId;
     private ProgressDialog progressDialog;
-
-    private boolean isInstantBuyItemUpdated = false;
 
     private OmnyPayAPI omnyPayAPI = null;
 
@@ -97,8 +96,8 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                setDiscountedCentsForProduct(basket.getProductOffers(), basket.getReconciledTotal());
-                basketCartAdapter.setResourceList(basket.getItems(), basket.getProductOffers());
+                setDiscountedCentsForProduct(basket.getOffers(), basket.getReconciledTotal());
+                basketCartAdapter.setResourceList(basket.getItems(), basket.getOffers());
                 if (basket.getItems().size() == 0) {
                     basketRecyclerView.setVisibility(View.GONE);
                     emptyView.setVisibility(View.VISIBLE);
@@ -115,15 +114,16 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * Sets the corresponding discounted cents for every product offers
      *
-     * @param offers           List of product offers received from OmnyPay service
+     * @param skuOffers           List of product offers received from OmnyPay service
      * @param reconciledTotals List of reconciled total received from OmnyPay service
      */
-    private void setDiscountedCentsForProduct(List<ProductOffer> offers, List<ReconciledTotal> reconciledTotals) {
+    private void setDiscountedCentsForProduct(List<SkuOffer> skuOffers, List<ReconciledTotal>
+            reconciledTotals) {
 
-        for (ProductOffer productOffer : offers) {
+        for (SkuOffer skuOffer : skuOffers) {
             for (ReconciledTotal reconciledTotal : reconciledTotals)
-                if (productOffer.getSku().equals(reconciledTotal.getSku())) {
-                    productOffer.setDiscountCents(reconciledTotal.getDiscountCents());
+                if (skuOffer.getSku().equals(reconciledTotal.getSku())) {
+                    skuOffer.setDiscountCents(reconciledTotal.getDiscountCents());
                 }
 
         }
@@ -139,7 +139,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
                 // Payment is completed. Display Payment Receipt now.
                 case OmnyPayAPI.ACTION_BASKET_RECEIPT_UPDATE:
                     final BasketReceipt basketReceipt = (BasketReceipt) intent.getSerializableExtra(OmnyPayAPI.BROADCAST_DATA);
-                    setDiscountedCentsForProduct(basketReceipt.getProductOffers(), basketReceipt
+                    setDiscountedCentsForProduct(basketReceipt.getOffers(), basketReceipt
                             .getReconciledTotal());
                     progressDialog.cancel();
                     Intent receiptClass = new Intent(CartActivity.this, ReceiptActivity.class);
@@ -186,13 +186,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         /**
          * Local Broadcast initiated and registered.
          */
-        LocalBroadcastManager.getInstance(CartActivity.this).registerReceiver
-                (basketUpdateReceiver, intentFilter);
-
-        if (!isInstantBuyItemUpdated) {
-            updateInstantBuyItem();
-            isInstantBuyItemUpdated = true;
-        }
+        LocalBroadcastManager.getInstance(CartActivity.this).registerReceiver(basketUpdateReceiver, intentFilter);
     }
 
     @Override
@@ -201,44 +195,6 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         LocalBroadcastManager.getInstance(CartActivity.this).unregisterReceiver(basketUpdateReceiver);
     }
 
-    private void updateInstantBuyItem() {
-        SharedPreferences prefs = getSharedPreferences("instantbuy", MODE_PRIVATE);
-        String productJSON = prefs.getString("instantbuyitemdata", null);
-        if (productJSON != null) {
-            try {
-                JSONObject product = new JSONObject(productJSON);
-
-                String sku = product.getString("sku");
-                String name = product.getString("name");
-                long price = (long) (product.getDouble("price") * 100);
-                long qty = product.getLong("qty");
-
-                Item productItem = new Item();
-                productItem.setName(name);
-                productItem.setSku(sku);
-                productItem.setPrice(price);
-                productItem.setQty(qty);
-
-                List<Item> instantBuyProducts = new ArrayList<>();
-                instantBuyProducts.add(productItem);
-
-                omnyPayAPI.updateBasket(instantBuyProducts, new OmnyPayCallback<Basket>() {
-                    @Override
-                    public void onResult(Basket basket) {
-                        Log.d("","");
-                    }
-
-                    @Override
-                    public void onFailure(OmnyPayError omnyPayError) {
-                        Log.d("","");
-                    }
-                });
-
-            } catch (JSONException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
 
     @Override
     public void onClick(View view) {

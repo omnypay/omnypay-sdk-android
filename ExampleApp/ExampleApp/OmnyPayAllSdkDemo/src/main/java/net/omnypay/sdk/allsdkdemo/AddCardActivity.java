@@ -121,11 +121,7 @@ public class AddCardActivity extends AppCompatActivity implements View.OnClickLi
                 provisionCardParam.setCardType(getCardType(selection));
                 provisionCardParam.setCardIssuer(cardIssuer.getText().toString());
                 provisionCardParam.setCardExpiryDate(cardExpiryDate.getText().toString());
-                /**
-                 * setCardPin is set as mandatory field on pantheon demo. It will be removed
-                 * going further
-                 */
-                provisionCardParam.setCardPin("123");
+                provisionCardParam.setCardPin("");
                 provisionCardParam.setCardHolderZip(cardHolderZip.getText().toString());
                 provisionCardParam.setCardHolderName(cardHolderName.getText().toString());
                 validations();
