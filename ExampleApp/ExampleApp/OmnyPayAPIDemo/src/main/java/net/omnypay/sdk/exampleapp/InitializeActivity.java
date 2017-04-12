@@ -59,7 +59,7 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
      * YOUR PASSWORD
      */
     private String password = null;
-    private String accountAuthenticationUrl = "https://pantheon.sandbox.omnypay.net:443/identity/authentication";
+    private String accountAuthenticationUrl = "https://pantheon.demo.omnypay.net/identity/authentication";
 
     private OmnyPayAPI omnyPayApi = null;
 
