@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="omnypaysdk-demo-release-unspecified">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/889d6ba45612066863e9a71e10aab23afa8097fc/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/889d6ba45612066863e9a71e10aab23afa8097fc/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
