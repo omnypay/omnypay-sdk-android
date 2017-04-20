@@ -49,5 +49,4 @@ dependencies {
     compile 'com.google.android.gms:play-services-vision:10.0.1'
     compile 'com.neovisionaries:nv-websocket-client:1.31'
     compile 'joda-time:joda-time:2.9.3'
-
 }
