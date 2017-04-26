@@ -21,13 +21,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -37,18 +35,12 @@ import net.omnypay.sdk.allsdkdemo.utils.Constants;
 import net.omnypay.sdk.core.model.Basket;
 import net.omnypay.sdk.core.model.BasketPaymentConfirmation;
 import net.omnypay.sdk.core.model.BasketReceipt;
-import net.omnypay.sdk.core.model.Item;
-import net.omnypay.sdk.core.model.ProductOffer;
 import net.omnypay.sdk.core.model.ReconciledTotal;
 import net.omnypay.sdk.core.model.SkuOffer;
 import net.omnypay.sdk.wrapper.OmnyPayAPI;
 import net.omnypay.sdk.wrapper.OmnyPayCallback;
 import net.omnypay.sdk.wrapper.OmnyPayError;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**

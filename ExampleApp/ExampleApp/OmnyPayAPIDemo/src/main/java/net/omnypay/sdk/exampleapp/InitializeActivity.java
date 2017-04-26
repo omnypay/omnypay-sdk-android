@@ -29,6 +29,7 @@ import net.omnypay.sdk.exampleapp.model.Authentication;
 import net.omnypay.sdk.exampleapp.model.AuthenticationRequestParam;
 import net.omnypay.sdk.exampleapp.network.HttpOps;
 import net.omnypay.sdk.exampleapp.network.Listener;
+import net.omnypay.sdk.exampleapp.utils.Constants;
 import net.omnypay.sdk.wrapper.OmnyPayAPI;
 import net.omnypay.sdk.wrapper.OmnyPayCallback;
 import net.omnypay.sdk.wrapper.OmnyPayError;
@@ -59,7 +60,7 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
      * YOUR PASSWORD
      */
     private String password = null;
-    private String accountAuthenticationUrl = "https://pantheon.demo.omnypay.net/identity/authentication";
+    private String accountAuthenticationUrl = "https://pantheon.demo000.omnypay.net:443/identity/authentication";
 
     private OmnyPayAPI omnyPayApi = null;
 
@@ -89,6 +90,9 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
     private void initializeSDK() {
         progressDialog.setMessage("Initializing SDK ");
         progressDialog.show();
+      /*  final HashMap<String, String> params = new HashMap<>();
+        params.put(OmnyPayAPI.KEY_MERCHANT_NAME, merchantId);
+        params.put(OmnyPayAPI.KEY_MIXPANEL_PROJECT_TOKEN, null);*/
         omnyPayApi.initialize(merchantId, null, new
                 OmnyPayCallback<Void>() {
                     @Override
@@ -164,6 +168,7 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
                 .getMerchantAuthToken(), new OmnyPayCallback<AuthenticatedSession>() {
             @Override
             public void onResult(AuthenticatedSession authenticatedSession) {
+                Constants.SESSION_ID_KEY = authenticatedSession.getId();
                 progressDialog.cancel();
                 moveToAddCardActivity();
             }
@@ -173,6 +178,7 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
                 showToast(omnypayError.getMessage());
             }
         });
+
     }
 
     /**
@@ -181,6 +187,7 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
      */
     private void moveToAddCardActivity() {
         Intent intent = new Intent(this, DisplayCardsActivity.class);
+        startActivity(intent);
         startActivity(intent);
     }
 

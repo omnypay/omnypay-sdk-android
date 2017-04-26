@@ -33,7 +33,6 @@ import android.widget.Toast;
 import net.omnypay.sdk.core.model.Basket;
 import net.omnypay.sdk.core.model.BasketPaymentConfirmation;
 import net.omnypay.sdk.core.model.BasketReceipt;
-import net.omnypay.sdk.core.model.ProductOffer;
 import net.omnypay.sdk.core.model.ReconciledTotal;
 import net.omnypay.sdk.core.model.SkuOffer;
 import net.omnypay.sdk.exampleapp.adapters.BasketAdapter;
@@ -43,8 +42,6 @@ import net.omnypay.sdk.wrapper.OmnyPayCallback;
 import net.omnypay.sdk.wrapper.OmnyPayError;
 
 import java.util.List;
-
-import static android.view.View.INVISIBLE;
 
 /**
  * This class fetches and displays all the line items or products along with the product offers.
@@ -58,6 +55,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
     private ProgressDialog progressDialog;
 
     private OmnyPayAPI omnyPayApi = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

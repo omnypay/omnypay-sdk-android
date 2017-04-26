@@ -24,11 +24,11 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import net.omnypay.sdk.allsdkdemo.model.Authentication;
 import net.omnypay.sdk.allsdkdemo.model.AuthenticationRequestParam;
 import net.omnypay.sdk.allsdkdemo.network.HttpOps;
 import net.omnypay.sdk.allsdkdemo.network.Listener;
 import net.omnypay.sdk.core.model.AuthenticatedSession;
-import net.omnypay.sdk.core.model.Authentication;
 import net.omnypay.sdk.wrapper.OmnyPayAPI;
 import net.omnypay.sdk.wrapper.OmnyPayCallback;
 import net.omnypay.sdk.wrapper.OmnyPayError;

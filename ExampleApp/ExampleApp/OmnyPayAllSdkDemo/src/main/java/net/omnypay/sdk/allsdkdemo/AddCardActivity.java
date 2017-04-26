@@ -27,8 +27,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import net.omnypay.sdk.core.model.PaymentInstrumentInfo;
 import net.omnypay.sdk.core.model.ProvisionCardParam;
+import net.omnypay.sdk.core.model.WalletPaymentInstrumentInfo;
 import net.omnypay.sdk.wrapper.OmnyPayAPI;
 import net.omnypay.sdk.wrapper.OmnyPayCallback;
 import net.omnypay.sdk.wrapper.OmnyPayError;
@@ -132,9 +132,9 @@ public class AddCardActivity extends AppCompatActivity implements View.OnClickLi
                  * a third party vault including that of a retailer.
                  */
                 omnyPayAPI.provisionPaymentInstrument(provisionCardParam, new
-                        OmnyPayCallback<PaymentInstrumentInfo>() {
+                        OmnyPayCallback<WalletPaymentInstrumentInfo>() {
                     @Override
-                    public void onResult(PaymentInstrumentInfo paymentInstrumentInfo) {
+                    public void onResult(WalletPaymentInstrumentInfo paymentInstrumentInfo) {
                         progressDialog.cancel();
                         finish();
                     }

@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.omnypay.sdk.core.model.BasketLineItem;
-import net.omnypay.sdk.core.model.Item;
-import net.omnypay.sdk.core.model.ProductOffer;
 import net.omnypay.sdk.core.model.SkuOffer;
 import net.omnypay.sdk.exampleapp.R;
 

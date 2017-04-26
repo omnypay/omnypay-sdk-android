@@ -24,5 +24,7 @@ public class Constants {
 
     public static String PAYMENT_INSTRUMENT_ID_KEY = "payment_instrument_id";
     public static String TRANSACTION_SUMMARY = "transaction_summary";
+    public static String PROJECT_TOKEN = "a4fc365120db5dbc1731909f34aa8285";
+    public static String SESSION_ID_KEY = "session_Id";
 
 }

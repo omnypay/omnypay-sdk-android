@@ -27,10 +27,8 @@ import android.widget.TextView;
 
 import net.omnypay.sdk.core.model.BasketLineItem;
 import net.omnypay.sdk.core.model.BasketReceipt;
-import net.omnypay.sdk.core.model.Item;
 import net.omnypay.sdk.core.model.ReconciledTotal;
 import net.omnypay.sdk.core.model.TotalPayment;
-import net.omnypay.sdk.core.model.TotalSummary;
 import net.omnypay.sdk.exampleapp.adapters.BasketAdapter;
 import net.omnypay.sdk.exampleapp.utils.Constants;
 
@@ -45,6 +43,7 @@ public class ReceiptActivity extends AppCompatActivity implements View.OnClickLi
     private BasketAdapter receiptCartAdapter;
     private BasketReceipt basketReceipt;
     private Button homeButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
