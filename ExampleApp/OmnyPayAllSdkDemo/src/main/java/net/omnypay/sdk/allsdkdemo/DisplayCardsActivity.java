@@ -275,7 +275,7 @@ public class DisplayCardsActivity extends AppCompatActivity implements View.OnCl
     private void checkIn(String posId) {
         progressDialog.setMessage("Checking in");
         progressDialog.show();
-        omnyPayApi.checkIn(posId, new OmnyPayCallback<MerchantPoS>() {
+        omnyPayApi.checkIn(null, posId, new OmnyPayCallback<MerchantPoS>() {
             @Override
             public void onResult(MerchantPoS merchantPoS) {
                 progressDialog.cancel();
