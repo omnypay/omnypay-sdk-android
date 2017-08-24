@@ -215,7 +215,7 @@ Prerequisites:
         @Override
         public void onResult(MerchantPos result) {
             // Basket successfully associated, now either choose the payment method
-            // Or edit your kart from POS terminal
+            // Or edit your cart from POS terminal
         }
 
         @Override
@@ -398,7 +398,7 @@ Add OmnyPayAuth library in build path and authenticate wherever needed requried 
 ```
 
 ### Sample app
-Checkout our sample app <a href="https://github.com/omnypay/omnypay-sdk-android/tree/master/ExampleApp/ExampleApp">here</a>.
+Checkout our sample app <a href="https://github.com/omnypay/omnypay-sdk-android/tree/master/ExampleApp">here</a>.
 
 ## License
    ```
