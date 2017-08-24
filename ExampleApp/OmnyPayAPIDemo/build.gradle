@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
-
+        applicationId "net.omnypay.sdk.exampleapp"
         minSdkVersion 16
         targetSdkVersion 24
         versionCode 3
@@ -55,4 +55,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'joda-time:joda-time:2.9.3'
     compile 'com.neovisionaries:nv-websocket-client:1.31'
+
 }

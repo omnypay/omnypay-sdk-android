@@ -10,10 +10,18 @@ The OmnyPay SaaS platform offers a cutting edge orchestration layer which allows
 Consumers identify with the brands that they interact with the most, and have built inherent loyalty with them. The OmnyPay white label solution leverages and strengthens the ongoing brand equity built by the merchant or bank or service provider throughout the ongoing relationship with their loyal shoppers, and by consistently promoting it across all channels.  Through its mobile SDK and Open APIs, the OmnyPay platform can be quickly integrated with the existing mobile apps, as well as, with their legacy POS and backend systems.
 
 ## Registration
-Register your app at http://www.omnypay.net/ and save merchantId
+Register your app at http://www.omnypay.net/ You will be assigned a merchant id. Please save this for future.
 
 ## Android SDK
-OmnyPay android SDK enables retailer/merchant android apps to integrate OmnyPay's rich checkout experience for a shopper. OmnyPay SDK provides simple functions to perform operations on OmnyPay platform.
+OmnyPay android SDK enables retailer/merchant android apps to integrate OmnyPay's rich checkout experience for a shopper using the Retailer’s mobile app. OmnyPay SDK provides simple functions to perform operations on OmnyPay platform.
+
+|   **SDK**   | **Description**                                                               | **Version** | **Release Date** |
+|:-----------:|-------------------------------------------------------------------------------|:-----------:|:----------------:|
+| OmnyPayAPI  | Provides access to OmnyPay Platform API                                       |     0.0.391     |    Aug-24-2017   |
+| OmnyPayScan | Provides an easy way to scan machine readable codes like QRCode, Barcode etc. |     1.0     |    Apr-04-2017   |
+| OmnyPayAuth | Provides an easy way to authenticate user by Touch Id or using Passcode       |     1.0     |    Apr-04-2017   |
+| OmnyPayIdentity | Provides an easy way to scan an identity document e.g. driver license, and get details regarding the document.|     1.0     |    Apr-04-2017   |
+| OmnyPayPIScan | Provides an easy way to scan a credit/debit card and get card details.      |     1.0     |    Apr-04-2017   |
 
 ## Version
 
@@ -81,7 +89,7 @@ There are two main classes of SDK:
 All the APIs provided by the SDK perform specific operations provided they are called in a logical sequence. However there are two minimum required steps to follow before any other operation can be performed, these are:
 
 ### Initialize SDK
-Initialize the OmnyPay SDK using ```initialize(merchantId, null, OmnypayCallback())``` API by passing your merchant Id. The merchantId uniquely identifies your organization. Any API calls to access or update resources are scoped within the merchant id. This should be called prior to calling OmnyPay APIs and recommend this be invoked at application startup. The application can detect success through the completion callback.
+Initialize the OmnyPay SDK using ```initialize(merchantId, merchantApiKey, merchantApiSecret, params, OmnypayCallback())``` API by passing your merchant Id, merchant api key and merchant api secret. The merchantId uniquely identifies your organization. Any API calls to access or update resources are scoped within the merchant id. This should be called prior to calling OmnyPay APIs and recommend this be invoked at application startup. The application can detect success through the completion callback.
 
 ### Authenticate shopper
 OmnyPay supports authentication through a retailer authentication service. If a retailer authentication service is used, the Retailer should work with OmnyPay technical representative to establish the connection before invoking the authentication API. OmnyPay supports [Basic authentication] and OAuth token in its API and SDK
@@ -99,7 +107,7 @@ An example flow can be created as below:
 ```java
     // merchantId received as a part of registration process
     OmnyPayAPI omnyPayAPI = new OmnyPayAPI(context);
-    omnyPayAPI.initialize(context, merchantId, null, new OmnyPayCallback<Session>(){
+    omnyPayAPI.initialize(context, merchantId, merchantApiKey, merchantApiSecret, new OmnyPayCallback<Session>(){
         @Override
         public void onResult(Session session) {
             // Initialization complete

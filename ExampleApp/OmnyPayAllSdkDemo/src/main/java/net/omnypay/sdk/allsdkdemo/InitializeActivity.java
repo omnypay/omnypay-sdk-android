@@ -102,11 +102,9 @@ public class InitializeActivity extends AppCompatActivity implements View.OnClic
         progressDialog.show();
 
         final HashMap<String, String> params = new HashMap<>();
-        params.put(OmnyPayAPI.MERCHANT_API_KEY, Constants.API_KEY);
-        params.put(OmnyPayAPI.MERCHANT_API_SECRET, Constants.API_SECRET);
         params.put(OmnyPayAPI.CORRELATIONID, Constants.CORRELATION_ID);
 
-        omnyPayAPI.initialize(merchantId, params, new
+        omnyPayAPI.initialize(merchantId, Constants.API_KEY, Constants.API_SECRET, params, new
                 OmnyPayCallback<Void>() {
                     @Override
                     public void onResult(Void aVoid) {

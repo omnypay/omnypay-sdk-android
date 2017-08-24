@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.3"
 
     defaultConfig {
-        applicationId "talentica.com.allsdkdemo"
+        applicationId "net.omnypay.sdk.allsdkdemo"
         minSdkVersion 16
         targetSdkVersion 24
         versionCode 3
