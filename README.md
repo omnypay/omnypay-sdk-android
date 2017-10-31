@@ -1,4 +1,4 @@
-# [![OmnyPay](https://static1.squarespace.com/static/54ae3170e4b0afa8bbd35870/580a981346c3c414613e5a6f/58d158bd6b8f5bad3a99e941/1490115997842/final+file+omnyway.jpg?format=2500w)](http://www.omnypay.net/)
+# [![OmnyWay](https://static1.squarespace.com/static/54ae3170e4b0afa8bbd35870/580a981346c3c414613e5a6f/58d158bd6b8f5bad3a99e941/1490115997842/)](http://www.omnypay.net/)
 
 ## Introduction
 
