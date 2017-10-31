@@ -2,32 +2,23 @@
 
 ## Introduction
 
-In order to serve the emerging needs of merchants, OmnyPay has developed a SaaS based white label Contextual Commerce platform with which merchants, banks and service providers will be able to offer their consumers, several unique digital commerce services, as part of their own branded mobile app – thus giving the merchants, full control of their consumer relationships, consumer data and consumer experiences when shopping across their multi-channels environments. Equally, working with partner’s bank’s app, merchants can have a “virtual” relationship with non-frequent customers as well.
-The OmnyPay SaaS platform offers a cutting edge orchestration layer which allows the rapid integration of its platform to the merchants’ POS, CRM, Loyalty, marketing, inventory, analytics, and payments, while also enabling a unique core set of premium digital services as part of the Merchants’ own branded app for their repeat customers, and their partners app for less frequently visiting customers.
+Zapbuy combines the latest in contextualization, personalization and frictionless checkout technologies to provide a unique user experience, designed to create an uplift in revenue and an improved ROI from merchant’s advertising budgets.Zapbuy works across all mediums — including social media, email, search engine, television and print — allowing consumers to buy products or services directly from ads with a single “ZAP.”
+By adding the Zapbuy service within their mobile apps, banks, retailer and social media services can increase the stickiness of their payment and credit products, expand loyalty to their service, and also vastly improve their synergies with brands.
 
-![OmnyPaySaaS](https://github.com/omnypay/omnypay-sdk-android/blob/master/assets/Images/OmnyPaySaaS.png)
-
-Consumers identify with the brands that they interact with the most, and have built inherent loyalty with them. The OmnyPay white label solution leverages and strengthens the ongoing brand equity built by the merchant or bank or service provider throughout the ongoing relationship with their loyal shoppers, and by consistently promoting it across all channels.  Through its mobile SDK and Open APIs, the OmnyPay platform can be quickly integrated with the existing mobile apps, as well as, with their legacy POS and backend systems.
-
-## Registration
-Register your app at http://www.omnypay.net/ You will be assigned a merchant id. Please save this for future.
+To start using Zapbuy, brands and retailers simply provide a catalog of products to be included in the Zapbuy service and select advertising mediums and campaign dates. Meanwhile, the Zapbuy functionality shows up within the social, banking or retail/brand apps powered by Omnyway’s Zapbuy SDK. The Zapbuy service also integrates directly into popular ad platforms and combines the Zapbuy code with the display ads, allowing shoppers to buy the product advertised with a “ZAP,” by utilizing the securely stored shopper credentials to complete the purchase.
 
 ## Android SDK
-OmnyPay android SDK enables retailer/merchant android apps to integrate OmnyPay's rich checkout experience for a shopper using the Retailer’s mobile app. OmnyPay SDK provides simple functions to perform operations on OmnyPay platform.
+OmnyPayZapBuy Android SDK enables retailers/brands android apps to integrate OmnyPay's ZapBuy SDK to buy products or services directly from ads with a single “ZAP.”. OmnyPay's ZapBuy SDK routes consumers directly to a purchase page without requiring them to leave the medium they are viewing.
 
 |   **SDK**   | **Description**                                                               | **Version** | **Release Date** |
 |:-----------:|-------------------------------------------------------------------------------|:-----------:|:----------------:|
-| OmnyPayAPI  | Provides access to OmnyPay Platform API                                       |     0.0.391     |    Aug-24-2017   |
-| OmnyPayScan | Provides an easy way to scan machine readable codes like QRCode, Barcode etc. |     1.0     |    Apr-04-2017   |
-| OmnyPayAuth | Provides an easy way to authenticate user by Touch Id or using Passcode       |     1.0     |    Apr-04-2017   |
-| OmnyPayIdentity | Provides an easy way to scan an identity document e.g. driver license, and get details regarding the document.|     1.0     |    Apr-04-2017   |
-| OmnyPayPIScan | Provides an easy way to scan a credit/debit card and get card details.      |     1.0     |    Apr-04-2017   |
+| OmnyPayZapBuy  | Provides access to OmnyPayZapBuy Platform                                      |     0.1.25     |    31-Oct-2017   |
 
 ## Version
 
 |Version| Release date| Description                          |
 |-------|-------------|--------------------------------------|
-|    1.0|  08-Dec-2016| First Release                        |
+|    1.0|  31-Oct-2017| First Release                        |
 
 
 ## Requirements 
@@ -36,54 +27,25 @@ OmnyPay android SDK enables retailer/merchant android apps to integrate OmnyPay'
 - Gradle build tools version 2.1.3 or higher
 - Latest version of Android support repository installed
 - Gradle dependencies
-    - compile 'com.android.support:appcompat-v7:23.0.0' (general)
+    - compile 'com.android.support:appcompat-v7:25.0.0' (general)
     - compile 'com.android.support:design:23.0.0' (general)
-    - compile 'com.squareup.picasso:picasso:2.5.2' (required for OmnyPayAPI)
-    - compile 'com.squareup.okhttp:okhttp:2.7.5' (required for OmnyPayAPI & OmnyPayIdentity)
-    - compile 'com.journeyapps:zxing-android-embedded:3.3.0' (required for OmnyPayScan module)
-    - compile 'com.google.android.gms:play-services-vision:8.1.0' (required for OmnyPayScan module)
-    - compile 'com.squareup.okhttp:logging-interceptor:2.7.5' (required for OmnyPayAPI & OmnyPayIdentity)
-    - compile 'com.google.code.gson:gson:2.6.2' (required for OmnyPayAPI)
-    - compile 'joda-time:joda-time:2.9.3' (required for OmnyPayAPI)
-    - compile 'com.neovisionaries:nv-websocket-client:1.31' (required for OmnyPayAPI)
-    - compile 'com.google.android.gms:play-services-gcm:8.1.0' (required for OmnyPayAPI)
-    - Add Jumio dependency in app level build.gradle
-```groovy
-            repositories {
-                maven {
-                    url 'http://mobile-sdk.jumio.com'
-                }
-            }
-
-            ext {
-                SDK_VERSION = "2.3.0"
-            }
-
-            dependencies {
-                ...
-                compile 'com.jumio.android:bam:${SDK_VERSION}@aar'
-                compile 'com.jumio.android:core:${SDK_VERSION}@aar'
-                compile 'com.jumio.android:nv:${SDK_VERSION}@aar'
-                compile 'com.jumio.android:nv-ocr:${SDK_VERSION}@aar'
-                ...
-            }
-```
-
+    - compile 'com.google.android.gms:play-services-gcm:8.1.0'
+    
 # Installation
 ## Gradle dependency
-Currently OmnyPay does not support Gradle but committed to provide it shortly. Please visit the site again on availability of Gradle dependency. For those developers who have signed up for developer account already, an email notification about availability will be sent. 
+Currently OmnyPayZapBuy does not support Gradle but committed to provide it shortly. Please visit the site again on availability of Gradle dependency. For those developers who have signed up for developer account already, an email notification about availability will be sent. 
 
 ## Manually
 Until we support Gradle installation, you can integrate OmnyPay into your project manually.
 
-- Download the OmnyPay SDK for android. For details see <a href="https://github.com/omnypay/omnypay-sdk-android">here</a>.
+- Download the OmnyPayZapBuy SDK for android. For details see [here](https://github.com/omnypay/omnypay-sdk-android/tree/master/OmnyPayZapBuy).
 - Select your application project in the project explorer and click on new module. Select import .AAR/.JAR package. Select the downloaded AAR android library.
 
 ## Integrating with core services
 There are two main classes of SDK:
 
-- **OmnyPayAPI**: A java class that is used to access all OmnyPay APIs.
-- **OmnyPayCallback**: A generic callback interface for API responses.
+- **OmnyPayZapBuy**: A java class that is used to access all OmnyPayZapBuy APIs.
+- **ZapBuyCallback**: A generic callback interface for Zapbuy.
 
 ## Minimum steps required
 All the APIs provided by the SDK perform specific operations provided they are called in a logical sequence. However there are two minimum required steps to follow before any other operation can be performed, these are:
