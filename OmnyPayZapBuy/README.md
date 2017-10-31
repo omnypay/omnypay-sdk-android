@@ -14,7 +14,7 @@ Register your app at http://www.omnypay.net/ You will be assigned a merchant id,
 Register your user at http://www.omnypay.net/ You will be assigned a merchant Shopper Id and merchant Auth Token. Please save this for future.
 
 ## Android SDK
-OmnyPayZapBuy Android SDK enables retailers/brands android apps to integrate OmnyPay's ZapBuy SDK to buy products or services directly from ads with a single “ZAP.”. OmnyPay's ZapBuy SDK routes consumers directly to a purchase page without requiring them to leave the medium they are viewing.
+OmnyPayZapBuy Android SDK enables retailers/brands android apps to integrate OmnyPay's ZapBuy SDK to buy products or services directly from ads with a single “ZAP”. OmnyPay's ZapBuy SDK routes consumers directly to a purchase page without requiring them to leave the medium they are viewing.
 
 |   **SDK**   | **Description**                                                               | **Version** | **Release Date** |
 |:-----------:|-------------------------------------------------------------------------------|:-----------:|:----------------:|
