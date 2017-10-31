@@ -33,8 +33,8 @@ OmnyPayZapBuy Android SDK enables retailers/brands android apps to integrate Omn
 - Gradle build tools version 2.1.3 or higher
 - Latest version of Android support repository installed
 - Gradle dependencies
-    - compile 'com.android.support:appcompat-v7:25.0.0' (general)
-    - compile 'com.android.support:design:23.0.0' (general)
+    - compile 'com.android.support:appcompat-v7:25.0.0' //(general)
+    - compile 'com.android.support:design:23.0.0' //(general)
     - compile 'com.google.android.gms:play-services-gcm:8.1.0'
     
 # Installation
@@ -57,26 +57,36 @@ There are two main classes of SDK:
 Scan QR Code of a product and save it. There is only a single requirement before displaying product page of Zap Buy and it is:
 
 ### Initialize SDK
-Initialize the OmnyPayZapBuy SDK using ```startZapBuy(context, qrData, merchantId, merchantShopperId, merchantAuthToken, merchantApiKey, merchantApiSecret, configuration, ZapBuyCallback())``` API by passing your qrCode, merchant Id, merchant shopper Id, merchant auth token, merchant api key and merchant api secret. The merchantId uniquely identifies your organization. Any API calls to access or update resources are scoped within the merchant id. The application can detect success through the completion callback.
+Initialize the OmnyPayZapBuy SDK using ```startZapBuy(context, qrData, merchantId, merchantShopperId, merchantAuthToken, merchantApiKey, merchantApiSecret, configuration, ZapBuyCallback())``` API by passing your qrCode, merchant Id, merchant shopper Id, merchant auth token, merchant api key and merchant api secret. qrData is the qr Code of the product which is to be purchased. The merchantId uniquely identifies your organization. Any API calls to access or update resources are scoped within the merchant id. The application can detect success through the completion callback.
 
 ### Display Product Page
 
 ```java
     // merchantId, merchantApiKey and merchantApiSecret received as a part of merchant registration process
-	// merchantShopperId and merchantAuthToken received as a part of user registration process
+   // merchantShopperId and merchantAuthToken received as a part of user registration process
     OmnyPayZapBuy omnyPayZapBuy = new OmnyPayZapBuy(context);
     omnyPayZapBuy.startZapBuy(context, qrData, merchantId, merchantShopperId, merchantAuthToken, merchantApiKey, merchantApiSecret, configuration, new ZapBuyCallback<View>(){
         @Override
         public void onResult(View view) {
             // Initialization complete
-            //Set product page.
+            // Set product page.
         }
 
         @Override
         public void onFailure(ZapBuyError zapBuyError) {
-            // Initialization failed check error code
+            // Initialization failed check status code from error object
         }
     });
+```
+Error returned is captured inside onFailure and it shows that any of the parameters passed is incorrect, or QR Code is not valid.
+OnResult returns successful view of the product page. It can then be set inside a View or an Activity or as Fragment. Below is the code for setting the view in a Linear Layout inside an activity.
+
+```java
+	LinearLayout.LayoutParams webviewParams = new LinearLayout.LayoutParams
+                   (LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout
+                            .LayoutParams.MATCH_PARENT);
+            view.setLayoutParams(webviewParams);
+            instantBuyLinearLayout.addView(view);
 ```
 
 ### Display Payment receipt
